@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>모드 설정 · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app app--flat app--no-nav">
+  <header class="back-bar">
+    <button class="icon-btn" aria-label="닫기"><span class="material-symbols-rounded" aria-hidden="true">close</span></button>
+    <h1 class="back-bar__title">모드 설정</h1>
+  </header>
+
+  <main id="main">
+    <section style="padding:16px">
+      <div class="card card--filled" style="padding:16px;background:var(--brand-blue-light)">
+        <div class="row" style="gap:10px;align-items:flex-start">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);margin-top:2px">info</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--brand-blue-dark)">모드는 레이어입니다</div>
+            <div class="muted" style="font-size:12px;margin-top:2px">화면은 동일하게 유지되고, 추천/점수에 개인화 조건이 더해집니다.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mode cards -->
+    <div style="padding:0 16px 8px;display:flex;flex-direction:column;gap:12px">
+
+      <!-- Couple mode (ON) -->
+      <article class="card card--elevated" style="padding:18px;border:2px solid var(--brand-purple)">
+        <div class="row--between" style="margin-bottom:10px">
+          <div class="row" style="gap:10px">
+            <div style="width:44px;height:44px;border-radius:var(--radius-full);background:var(--brand-purple-light);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:#8a4ed3">favorite</span>
+            </div>
+            <div>
+              <div style="font-size:16px;font-weight:800">연인 레이어</div>
+              <div class="muted" style="font-size:12px">로맨틱 · 골든아워 가중</div>
+            </div>
+          </div>
+          <div style="width:44px;height:24px;background:var(--brand-purple);border-radius:999px;position:relative">
+            <div style="position:absolute;right:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+          </div>
+        </div>
+        <ul style="margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--md-sys-color-on-surface-variant)">
+          <li class="row" style="gap:6px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px;color:var(--brand-purple)">check</span>일몰 시간 · 골든아워 품질 점수 추가</li>
+          <li class="row" style="gap:6px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px;color:var(--brand-purple)">check</span>사진 조명 최적 장소 우선 노출</li>
+          <li class="row" style="gap:6px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px;color:var(--brand-purple)">check</span>D-day에 기념일 템플릿 제공</li>
+        </ul>
+      </article>
+
+      <!-- Family mode (OFF) -->
+      <article class="card card--outlined" style="padding:18px">
+        <div class="row--between" style="margin-bottom:10px">
+          <div class="row" style="gap:10px">
+            <div style="width:44px;height:44px;border-radius:var(--radius-full);background:var(--brand-green-light);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-green-dark)">family_restroom</span>
+            </div>
+            <div>
+              <div style="font-size:16px;font-weight:800">가족 레이어</div>
+              <div class="muted" style="font-size:12px">안전 · KidSafetyScore 우선</div>
+            </div>
+          </div>
+          <div style="width:44px;height:24px;background:var(--gray-300);border-radius:999px;position:relative">
+            <div style="position:absolute;left:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+          </div>
+        </div>
+        <ul style="margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--md-sys-color-on-surface-variant)">
+          <li class="row" style="gap:6px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px;color:var(--md-sys-color-on-surface-variant)">radio_button_unchecked</span>자외선·미세먼지·열지수 안전 경계</li>
+          <li class="row" style="gap:6px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px;color:var(--md-sys-color-on-surface-variant)">radio_button_unchecked</span>유아동반 친화 장소 우선 노출</li>
+          <li class="row" style="gap:6px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px;color:var(--md-sys-color-on-surface-variant)">radio_button_unchecked</span>실내 대안 자동 추천</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Theme intensity -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">날씨 테마 강도</h2>
+      </div>
+    </section>
+    <div style="padding:0 16px">
+      <div class="segmented" style="width:100%">
+        <button class="segmented__item" style="flex:1">Full</button>
+        <button class="segmented__item segmented__item--active" style="flex:1">Soft</button>
+        <button class="segmented__item" style="flex:1">Accent</button>
+      </div>
+      <p class="muted" style="font-size:12px;margin:8px 4px 0">Soft: Surface는 중립색 · 배지/분리선에만 테마 색 사용 (권장 기본값)</p>
+    </div>
+
+    <!-- Data layer -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">보조 데이터 레이어</h2>
+      </div>
+    </section>
+    <div class="card card--outlined" style="margin:0 16px 24px;padding:0">
+      <div class="row--between" style="padding:14px 16px;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <div>
+          <div style="font-size:14px;font-weight:700">TCI (기후 쾌적도)</div>
+          <div class="muted" style="font-size:12px">KMA 보조 점수 표시</div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--brand-blue);border-radius:999px;position:relative">
+          <div style="position:absolute;right:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+      <div class="row--between" style="padding:14px 16px">
+        <div>
+          <div style="font-size:14px;font-weight:700">해외 대기질 (IQAir)</div>
+          <div class="muted" style="font-size:12px">국내만 볼 때는 비활성화</div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--gray-300);border-radius:999px;position:relative">
+          <div style="position:absolute;left:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>

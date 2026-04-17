@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>도시 비교 · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app app--flat app--no-nav">
+  <header class="back-bar">
+    <button class="icon-btn" aria-label="뒤로가기"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button>
+    <h1 class="back-bar__title">도시 비교</h1>
+    <button class="icon-btn" aria-label="저장"><span class="material-symbols-rounded" aria-hidden="true">bookmark_add</span></button>
+  </header>
+
+  <main id="main">
+    <!-- Period -->
+    <section style="padding:12px 16px 0">
+      <div class="card card--outlined" style="padding:14px">
+        <div class="row--between">
+          <div>
+            <div class="muted" style="font-size:12px;font-weight:600">공통 시기</div>
+            <div style="font-size:15px;font-weight:700">2026년 5월 10일 ~ 5월 14일</div>
+          </div>
+          <button class="btn btn--tonal btn--sm">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">calendar_month</span>
+            변경
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cities row -->
+    <div class="section">
+      <div class="section__header">
+        <h2 class="section__title">선택 도시 <span class="muted" style="font-size:12px;font-weight:500">3/4</span></h2>
+        <button class="section__more">+ 추가</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px">
+      <article class="card card--elevated" style="padding:12px;text-align:center;border:2px solid var(--brand-blue)">
+        <div style="width:44px;height:44px;border-radius:var(--radius-full);background:var(--brand-blue-light);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue-dark)">beach_access</span>
+        </div>
+        <div style="font-size:13px;font-weight:800">제주</div>
+        <div class="score-chip score-chip--excellent" style="margin-top:6px">86</div>
+      </article>
+      <article class="card card--outlined" style="padding:12px;text-align:center">
+        <div style="width:44px;height:44px;border-radius:var(--radius-full);background:var(--brand-green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-green-dark)">forest</span>
+        </div>
+        <div style="font-size:13px;font-weight:800">강릉</div>
+        <div class="score-chip score-chip--good" style="margin-top:6px">72</div>
+      </article>
+      <article class="card card--outlined" style="padding:12px;text-align:center">
+        <div style="width:44px;height:44px;border-radius:var(--radius-full);background:var(--brand-orange-light);display:flex;align-items:center;justify-content:center;margin:0 auto 8px">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:#a8390f">castle</span>
+        </div>
+        <div style="font-size:13px;font-weight:800">경주</div>
+        <div class="score-chip score-chip--fair" style="margin-top:6px">58</div>
+      </article>
+    </div>
+
+    <!-- Overall summary -->
+    <div class="banner banner--success" style="margin-top:16px">
+      <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-green-dark);margin-top:2px">check_circle</span>
+      <div>
+        <p class="banner__title">제주가 가장 적합해요</p>
+        <p class="banner__msg">강수 확률 18%로 가장 안정적이고, 기온 20°C로 쾌적합니다.</p>
+      </div>
+    </div>
+
+    <!-- Metric comparison -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">지표별 비교</h2>
+      </div>
+    </section>
+
+    <div class="card card--outlined" style="margin:0 16px 12px;padding:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="row" style="gap:8px"><span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);font-size:20px">device_thermostat</span><span style="font-weight:700;font-size:14px">평균 기온</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">제주</span><div class="bar"><div class="bar__fill" style="width:60%;background:var(--brand-blue)"></div></div><span class="bar-row__val" style="width:48px">20°C</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">강릉</span><div class="bar"><div class="bar__fill" style="width:52%;background:var(--brand-blue)"></div></div><span class="bar-row__val" style="width:48px">17°C</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">경주</span><div class="bar"><div class="bar__fill" style="width:78%;background:var(--brand-orange)"></div></div><span class="bar-row__val" style="width:48px">24°C</span></div>
+      </div>
+    </div>
+
+    <div class="card card--outlined" style="margin:0 16px 12px;padding:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="row" style="gap:8px"><span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);font-size:20px">water_drop</span><span style="font-weight:700;font-size:14px">강수 확률</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">제주</span><div class="bar"><div class="bar__fill" style="width:18%;background:var(--score-excellent)"></div></div><span class="bar-row__val" style="width:48px">18%</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">강릉</span><div class="bar"><div class="bar__fill" style="width:32%;background:var(--score-good)"></div></div><span class="bar-row__val" style="width:48px">32%</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">경주</span><div class="bar"><div class="bar__fill" style="width:48%;background:var(--score-fair)"></div></div><span class="bar-row__val" style="width:48px">48%</span></div>
+      </div>
+    </div>
+
+    <div class="card card--outlined" style="margin:0 16px 12px;padding:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="row" style="gap:8px"><span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);font-size:20px">air</span><span style="font-weight:700;font-size:14px">미세먼지 PM2.5</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">제주</span><div class="bar"><div class="bar__fill" style="width:25%;background:var(--score-excellent)"></div></div><span class="bar-row__val" style="width:48px">15㎍</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">강릉</span><div class="bar"><div class="bar__fill" style="width:45%;background:var(--score-good)"></div></div><span class="bar-row__val" style="width:48px">26㎍</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">경주</span><div class="bar"><div class="bar__fill" style="width:60%;background:var(--score-fair)"></div></div><span class="bar-row__val" style="width:48px">34㎍</span></div>
+      </div>
+    </div>
+
+    <div class="card card--outlined" style="margin:0 16px 24px;padding:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="row" style="gap:8px"><span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);font-size:20px">wb_sunny</span><span style="font-weight:700;font-size:14px">맑음 일수 (최근 10년)</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">제주</span><div class="bar"><div class="bar__fill" style="width:72%;background:var(--score-excellent)"></div></div><span class="bar-row__val" style="width:48px">3.6일</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">강릉</span><div class="bar"><div class="bar__fill" style="width:60%;background:var(--score-good)"></div></div><span class="bar-row__val" style="width:48px">3.0일</span></div>
+        <div class="bar-row"><span class="bar-row__label" style="width:40px;font-size:12px;font-weight:700">경주</span><div class="bar"><div class="bar__fill" style="width:44%;background:var(--score-fair)"></div></div><span class="bar-row__val" style="width:48px">2.2일</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>

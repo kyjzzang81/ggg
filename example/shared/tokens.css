@@ -1,0 +1,199 @@
+/* =========================================================
+   CLIMATE Design Tokens
+   - 기준 문서: docs/DESIGN-SYSTEM.md
+   - 폰트: Pretendard (사용자 지정)
+   - 스타일: Material Design 3 (material-web 참고)
+   ========================================================= */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
+
+:root {
+  /* -------- Brand -------- */
+  --brand-blue: #5260FE;
+  --brand-blue-light: #EEF0FF;
+  --brand-blue-mid: #C4C8FF;
+  --brand-blue-dark: #3340CC;
+  --brand-green: #BEFBB6;
+  --brand-green-dark: #2C9E1E;
+  --brand-green-light: #EDFCEB;
+  --brand-orange: #FE7C52;
+  --brand-orange-light: #FFF0EB;
+  --brand-purple: #C871FD;
+  --brand-purple-light: #F7EBFF;
+
+  /* -------- Gray -------- */
+  --gray-100: #F2F4F7;
+  --gray-200: #E4E7EC;
+  --gray-300: #D0D5DD;
+  --gray-400: #98A2B3;
+  --gray-500: #667085;
+  --gray-700: #344054;
+  --gray-900: #101828;
+
+  /* -------- Score Grade -------- */
+  --score-excellent: #2C9E1E;
+  --score-excellent-bg: #EDFCEB;
+  --score-good: #5260FE;
+  --score-good-bg: #EEF0FF;
+  --score-fair: #FE7C52;
+  --score-fair-bg: #FFF0EB;
+  --score-poor: #DC2626;
+  --score-poor-bg: #FEE2E2;
+
+  /* -------- Semantic (MD3 sys color 대응) -------- */
+  --md-sys-color-primary: var(--brand-blue);
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: var(--brand-blue-light);
+  --md-sys-color-on-primary-container: var(--brand-blue-dark);
+  --md-sys-color-secondary: var(--brand-orange);
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-surface: #FFFFFF;
+  --md-sys-color-surface-dim: #F7F8FC;
+  --md-sys-color-surface-bright: #FFFFFF;
+  --md-sys-color-surface-container-lowest: #FFFFFF;
+  --md-sys-color-surface-container-low: #F7F8FC;
+  --md-sys-color-surface-container: #F2F4F7;
+  --md-sys-color-surface-container-high: #EDEFF4;
+  --md-sys-color-surface-container-highest: #E4E7EC;
+  --md-sys-color-on-surface: var(--gray-900);
+  --md-sys-color-on-surface-variant: var(--gray-500);
+  --md-sys-color-outline: var(--gray-300);
+  --md-sys-color-outline-variant: var(--gray-200);
+  --md-sys-color-error: var(--score-poor);
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-scrim: rgba(16, 24, 40, 0.4);
+
+  /* -------- Radius (docs 기준) -------- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 999px;
+
+  /* -------- Shadow -------- */
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+
+  /* MD3 elevation shadows (subtle) */
+  --elev-1: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.04);
+  --elev-2: 0 2px 6px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+  --elev-3: 0 4px 10px rgba(16, 24, 40, 0.08), 0 1px 3px rgba(16, 24, 40, 0.04);
+
+  /* -------- Spacing -------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+
+  /* -------- Typography -------- */
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', sans-serif;
+
+  --fs-display: 32px;
+  --lh-display: 40px;
+  --fs-h1: 28px;
+  --lh-h1: 36px;
+  --fs-h2: 24px;
+  --lh-h2: 32px;
+  --fs-h3: 20px;
+  --lh-h3: 28px;
+  --fs-body-l: 16px;
+  --lh-body-l: 24px;
+  --fs-body-m: 14px;
+  --lh-body-m: 22px;
+  --fs-caption: 12px;
+  --lh-caption: 18px;
+
+  /* -------- Motion (MD3 easing) -------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --dur-short: 150ms;
+  --dur-medium: 220ms;
+  --dur-long: 320ms;
+
+  /* -------- State layer opacity (MD3) -------- */
+  --state-hover: 0.08;
+  --state-focus: 0.12;
+  --state-press: 0.12;
+
+  /* -------- Layout -------- */
+  --bottom-nav-h: 72px;
+  --top-app-bar-h: 56px;
+}
+
+/* -------- Weather Theme (Soft 기본) -------- */
+[data-theme="sunny"]   { --theme-from: #FFE8A8; --theme-to: #FFCB6B; --theme-accent: #F59E0B; }
+[data-theme="shower"]  { --theme-from: #D5E8FF; --theme-to: #A5C7FA; --theme-accent: #2563EB; }
+[data-theme="cloudy"]  { --theme-from: #EEF0F4; --theme-to: #D0D5DD; --theme-accent: #667085; }
+[data-theme="snow"]    { --theme-from: #F0F6FF; --theme-to: #C4D8F0; --theme-accent: #0EA5E9; }
+[data-theme="heat"]    { --theme-from: #FFE0D6; --theme-to: #FF9C7A; --theme-accent: #EA580C; }
+[data-theme="cold"]    { --theme-from: #E4ECFF; --theme-to: #A9BEE6; --theme-accent: #4F46E5; }
+[data-theme="rain"]    { --theme-from: #C8D4E3; --theme-to: #8FA2B8; --theme-accent: #334155; }
+[data-theme="fog"]     { --theme-from: #EAEDF2; --theme-to: #BFC5CE; --theme-accent: #64748B; }
+
+/* -------- Base reset -------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--md-sys-color-surface-dim);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button { font-family: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.icon-filled { font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
+
+/* 숫자 tabular */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Skip link (접근성) */
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--md-sys-color-primary); color: #fff;
+  padding: 8px 12px; border-radius: var(--radius-sm);
+  z-index: 9999;
+}
+.skip-link:focus { left: 8px; top: 8px; }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}

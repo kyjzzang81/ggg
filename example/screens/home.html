@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>홈 · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body data-theme="sunny">
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app">
+  <!-- Top app bar -->
+  <header class="top-app-bar top-app-bar--transparent">
+    <button class="top-app-bar__location" aria-label="현재 위치 변경">
+      <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+      서울 · 성수동
+      <span class="material-symbols-rounded" aria-hidden="true">expand_more</span>
+    </button>
+    <button class="icon-btn" aria-label="알림">
+      <span class="material-symbols-rounded" aria-hidden="true">notifications</span>
+    </button>
+    <button class="icon-btn mobile-only" aria-label="메뉴">
+      <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- Hero card -->
+    <section class="hero" aria-label="현재 날씨 요약">
+      <span class="hero__eyebrow">
+        <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">sunny</span>
+        맑음 · 오전 10시
+      </span>
+      <h1 class="hero__title">오늘은 야외 활동<br>최적의 하루예요</h1>
+      <p class="hero__subtitle">자외선 지수 높음 · 미세먼지 보통</p>
+      <div class="hero__meta-row">
+        <div class="hero__temp tabular">22<span class="hero__temp-unit">°C</span></div>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span class="score-chip score-chip--excellent">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">trending_up</span>
+            Climate Score 87 · 강력 추천
+          </span>
+          <span class="muted" style="font-size:12px;">체감 24° · 습도 48%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key stats -->
+    <div style="height:16px"></div>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat__label"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">water_drop</span>강수 확률</div>
+        <div class="stat__value tabular">10<span style="font-size:14px">%</span></div>
+        <div class="stat__sub">오후까지 쾌청</div>
+      </div>
+      <div class="stat">
+        <div class="stat__label"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">air</span>미세먼지</div>
+        <div class="stat__value tabular">28<span style="font-size:14px"> ㎍/㎥</span></div>
+        <div class="stat__sub">보통 · PM2.5</div>
+      </div>
+      <div class="stat">
+        <div class="stat__label"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">wb_sunny</span>자외선</div>
+        <div class="stat__value">높음 <span style="font-size:14px;color:var(--brand-orange)">7</span></div>
+        <div class="stat__sub">선크림 권장</div>
+      </div>
+      <div class="stat">
+        <div class="stat__label"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">air</span>바람</div>
+        <div class="stat__value tabular">3<span style="font-size:14px"> m/s</span></div>
+        <div class="stat__sub">남동풍 · 약함</div>
+      </div>
+    </div>
+
+    <!-- Forecast strip -->
+    <section class="section" aria-label="5일 예보">
+      <div class="section__header">
+        <h2 class="section__title">5일 예보</h2>
+        <button class="section__more">시간별 ›</button>
+      </div>
+    </section>
+    <div class="forecast" role="list">
+      <button class="forecast__item forecast__item--active" role="listitem">
+        <span class="forecast__day">오늘</span>
+        <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:#F59E0B">wb_sunny</span>
+        <span class="forecast__temp">24°</span>
+        <span class="forecast__temp-min">14°</span>
+      </button>
+      <button class="forecast__item" role="listitem">
+        <span class="forecast__day">내일</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:#98A2B3">cloud</span>
+        <span class="forecast__temp">21°</span>
+        <span class="forecast__temp-min">13°</span>
+      </button>
+      <button class="forecast__item" role="listitem">
+        <span class="forecast__day">수</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:#2563EB">rainy</span>
+        <span class="forecast__temp">18°</span>
+        <span class="forecast__temp-min">12°</span>
+      </button>
+      <button class="forecast__item" role="listitem">
+        <span class="forecast__day">목</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:#2563EB">rainy</span>
+        <span class="forecast__temp">17°</span>
+        <span class="forecast__temp-min">11°</span>
+      </button>
+      <button class="forecast__item" role="listitem">
+        <span class="forecast__day">금</span>
+        <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:#F59E0B">wb_sunny</span>
+        <span class="forecast__temp">23°</span>
+        <span class="forecast__temp-min">13°</span>
+      </button>
+      <button class="forecast__item" role="listitem">
+        <span class="forecast__day">토</span>
+        <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:#F59E0B">wb_sunny</span>
+        <span class="forecast__temp">25°</span>
+        <span class="forecast__temp-min">15°</span>
+      </button>
+    </div>
+
+    <!-- Insight banner -->
+    <div class="banner banner--info" role="region" aria-label="오늘의 인사이트">
+      <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);margin-top:2px">lightbulb</span>
+      <div>
+        <p class="banner__title">이번 주는 한강 피크닉에 최적</p>
+        <p class="banner__msg">맑음 4일 연속 · 과거 10년 평균 대비 강수일 -40%</p>
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">지금 가기 좋은 곳</h2>
+        <button class="section__more">전체 ›</button>
+      </div>
+    </section>
+    <div class="list" style="margin-bottom: 16px;">
+      <article class="list-item">
+        <div class="list-item__thumb">
+          <span class="material-symbols-rounded" aria-hidden="true">park</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">서울숲</h3>
+          <p class="list-item__desc">햇살 좋은 날 산책 · 성수동에서 도보 10분</p>
+          <div class="list-item__meta">
+            <span class="chip chip--tone-green" style="height:22px;font-size:11px">야외 추천</span>
+            <span class="muted" style="font-size:11px">1.2km</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--excellent">92</span>
+        </div>
+      </article>
+
+      <article class="list-item">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#FFE8A8,#FFCB6B)">
+          <span class="material-symbols-rounded" aria-hidden="true">local_cafe</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">성수 카페거리</h3>
+          <p class="list-item__desc">자외선 회피 · 실내 추천</p>
+          <div class="list-item__meta">
+            <span class="chip chip--tone-blue" style="height:22px;font-size:11px">실내</span>
+            <span class="muted" style="font-size:11px">0.5km</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--good">78</span>
+        </div>
+      </article>
+
+      <article class="list-item">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#D5E8FF,#A5C7FA)">
+          <span class="material-symbols-rounded" aria-hidden="true">directions_walk</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">청계천 산책로</h3>
+          <p class="list-item__desc">바람 약함 · 저녁 산책 최적</p>
+          <div class="list-item__meta">
+            <span class="chip chip--tone-purple" style="height:22px;font-size:11px">저녁 추천</span>
+            <span class="muted" style="font-size:11px">3.8km</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--good">74</span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Bottom navigation -->
+  <nav class="bottom-nav" aria-label="주 탐색">
+    <a class="bottom-nav__item bottom-nav__item--active" href="home.html" aria-current="page">
+      <span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">home</span></span>
+      홈
+    </a>
+    <a class="bottom-nav__item" href="score.html">
+      <span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">analytics</span></span>
+      스코어
+    </a>
+    <a class="bottom-nav__item" href="place.html">
+      <span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">explore</span></span>
+      장소
+    </a>
+    <a class="bottom-nav__item" href="nearby.html">
+      <span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">near_me</span></span>
+      주변
+    </a>
+    <a class="bottom-nav__item" href="dday.html">
+      <span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">event</span></span>
+      D-day
+    </a>
+  </nav>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>

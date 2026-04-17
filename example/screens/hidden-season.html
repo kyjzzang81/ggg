@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>숨은 황금 시즌 · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app app--flat app--no-nav">
+  <header class="back-bar">
+    <button class="icon-btn" aria-label="뒤로가기">
+      <span class="material-symbols-rounded" aria-hidden="true">arrow_back</span>
+    </button>
+    <h1 class="back-bar__title">숨은 황금 시즌</h1>
+    <button class="icon-btn" aria-label="공유"><span class="material-symbols-rounded" aria-hidden="true">share</span></button>
+  </header>
+
+  <main id="main">
+    <!-- Intro -->
+    <section style="padding:16px 16px 0">
+      <div class="card card--filled" style="background:linear-gradient(135deg,#FFF0EB,#FFE8A8);padding:20px;border-radius:var(--radius-xl)">
+        <span class="hero__eyebrow" style="background:rgba(255,255,255,0.7)">
+          <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">auto_awesome</span>
+          성수기를 피한 진짜 황금 타이밍
+        </span>
+        <h2 style="margin:12px 0 6px;font-size:22px;line-height:28px;font-weight:800;letter-spacing:-0.4px">붐비지 않고<br>날씨는 가장 좋은 5주</h2>
+        <p class="muted" style="margin:0;font-size:13px">과거 10년 데이터에서 "Climate Score 80+ · 관광객 수 평균 이하"인 구간만 선별했어요.</p>
+      </div>
+    </section>
+
+    <!-- Filter chips -->
+    <div class="chip-row" style="padding-top:16px">
+      <button class="chip chip--active">전체</button>
+      <button class="chip">바다</button>
+      <button class="chip">산</button>
+      <button class="chip">도심</button>
+      <button class="chip">봄</button>
+      <button class="chip">가을</button>
+    </div>
+
+    <!-- Highlight cards (visual-heavy) -->
+    <div class="list" style="padding-top:8px;padding-bottom:24px">
+
+      <article class="card card--elevated" style="padding:0;overflow:hidden;border-radius:var(--radius-xl)">
+        <div style="height:120px;background:linear-gradient(135deg,#BEFBB6,#2C9E1E);position:relative;padding:16px;display:flex;align-items:flex-end">
+          <span class="hero__eyebrow" style="background:rgba(255,255,255,0.85)">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">event_available</span>
+            5월 2주 ~ 3주
+          </span>
+          <div style="position:absolute;right:16px;top:16px;background:#fff;border-radius:var(--radius-full);padding:6px 12px;font-size:12px;font-weight:800;color:var(--score-excellent)">Score 91</div>
+        </div>
+        <div style="padding:16px">
+          <h3 style="margin:0;font-size:17px;font-weight:800;letter-spacing:-0.3px">울릉도 · 나리분지</h3>
+          <p class="muted" style="margin:6px 0 12px;font-size:13px">6월 성수기 대비 방문객 -58% · 명이나물 수확 마지막 주. 강수일 평균 2일.</p>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <span class="chip chip--tone-green" style="height:24px;font-size:11px">산</span>
+            <span class="chip chip--tone-blue" style="height:24px;font-size:11px">미식</span>
+            <span class="chip chip--tone-purple" style="height:24px;font-size:11px">한적함</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--elevated" style="padding:0;overflow:hidden;border-radius:var(--radius-xl)">
+        <div style="height:120px;background:linear-gradient(135deg,#D5E8FF,#5260FE);position:relative;padding:16px;display:flex;align-items:flex-end">
+          <span class="hero__eyebrow" style="background:rgba(255,255,255,0.85)">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">event_available</span>
+            6월 마지막 주
+          </span>
+          <div style="position:absolute;right:16px;top:16px;background:#fff;border-radius:var(--radius-full);padding:6px 12px;font-size:12px;font-weight:800;color:var(--score-excellent)">Score 87</div>
+        </div>
+        <div style="padding:16px">
+          <h3 style="margin:0;font-size:17px;font-weight:800;letter-spacing:-0.3px">강릉 · 주문진</h3>
+          <p class="muted" style="margin:6px 0 12px;font-size:13px">7월 장마 시작 직전 · 체감기온 23°C · 해수욕 수온 조기 상승.</p>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <span class="chip chip--tone-blue" style="height:24px;font-size:11px">바다</span>
+            <span class="chip chip--tone-orange" style="height:24px;font-size:11px">미식</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--elevated" style="padding:0;overflow:hidden;border-radius:var(--radius-xl)">
+        <div style="height:120px;background:linear-gradient(135deg,#FFE8A8,#FE7C52);position:relative;padding:16px;display:flex;align-items:flex-end">
+          <span class="hero__eyebrow" style="background:rgba(255,255,255,0.85)">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">event_available</span>
+            10월 3주 ~ 4주
+          </span>
+          <div style="position:absolute;right:16px;top:16px;background:#fff;border-radius:var(--radius-full);padding:6px 12px;font-size:12px;font-weight:800;color:var(--score-excellent)">Score 89</div>
+        </div>
+        <div style="padding:16px">
+          <h3 style="margin:0;font-size:17px;font-weight:800;letter-spacing:-0.3px">담양 · 메타세쿼이아길</h3>
+          <p class="muted" style="margin:6px 0 12px;font-size:13px">단풍 절정기 직전 · 주말 평균 방문객 30% 적음. 미세먼지 "좋음" 일수 최다.</p>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <span class="chip chip--tone-orange" style="height:24px;font-size:11px">사진</span>
+            <span class="chip chip--tone-purple" style="height:24px;font-size:11px">산책</span>
+            <span class="chip chip--tone-green" style="height:24px;font-size:11px">미세먼지 낮음</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="banner banner--info" style="margin-bottom:32px">
+      <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue);margin-top:2px">info</span>
+      <div>
+        <p class="banner__title">숨은 황금 시즌은 어떻게 골라내나요?</p>
+        <p class="banner__msg">30년 기후 평균 + 관광객 수 추정 + 현지 축제/이벤트 데이터를 조합해 "쾌적한데 비어있는 구간"을 자동 탐지합니다.</p>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>주변 · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app app--flat">
+  <header class="top-app-bar">
+    <h1 class="top-app-bar__title">주변 추천</h1>
+    <button class="icon-btn" aria-label="지도"><span class="material-symbols-rounded" aria-hidden="true">map</span></button>
+    <button class="icon-btn" aria-label="필터"><span class="material-symbols-rounded" aria-hidden="true">tune</span></button>
+  </header>
+
+  <main id="main">
+    <!-- Current context -->
+    <section style="padding:12px 16px 0">
+      <div class="card card--filled" style="padding:14px;display:flex;align-items:center;gap:12px">
+        <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:var(--brand-blue);font-size:28px">near_me</span>
+        <div style="flex:1">
+          <div class="muted" style="font-size:11px;font-weight:600">현재 위치</div>
+          <div style="font-size:15px;font-weight:700">서울 · 성수동 카페거리</div>
+        </div>
+        <div class="score-chip score-chip--excellent">
+          <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">wb_sunny</span>
+          야외 최적
+        </div>
+      </div>
+    </section>
+
+    <!-- Category filter -->
+    <div class="chip-row" style="padding-top:16px">
+      <button class="chip chip--active">
+        <span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">all_inclusive</span>
+        전체
+      </button>
+      <button class="chip">
+        <span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">park</span>
+        야외/공원
+      </button>
+      <button class="chip">
+        <span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">local_cafe</span>
+        카페
+      </button>
+      <button class="chip">
+        <span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">restaurant</span>
+        맛집
+      </button>
+      <button class="chip">
+        <span class="material-symbols-rounded" aria-hidden="true" style="font-size:16px">museum</span>
+        실내 전시
+      </button>
+    </div>
+
+    <!-- Distance filter -->
+    <div class="section" style="padding-top:8px">
+      <div class="section__header" style="margin-bottom:8px">
+        <div class="muted" style="font-size:12px">반경 <strong style="color:var(--md-sys-color-on-surface)">2km</strong> · 32곳</div>
+        <div class="segmented">
+          <button class="segmented__item">500m</button>
+          <button class="segmented__item segmented__item--active">2km</button>
+          <button class="segmented__item">5km</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- List -->
+    <div class="list" style="padding-bottom:16px">
+      <article class="list-item" style="grid-template-columns:60px 1fr auto">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#EDFCEB,#BEFBB6)">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-green-dark)">park</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">서울숲 은행나무길</h3>
+          <p class="list-item__desc">지금 기온 22°C · 자외선 피해 그늘 산책로</p>
+          <div class="list-item__meta">
+            <span class="muted" style="font-size:11px">· 도보 12분</span>
+            <span class="chip chip--tone-green" style="height:22px;font-size:11px">야외 추천</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--excellent">94</span>
+          <span class="muted" style="font-size:11px">0.9km</span>
+        </div>
+      </article>
+
+      <article class="list-item" style="grid-template-columns:60px 1fr auto">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#FFE8A8,#FFCB6B)">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:#9a6400">local_cafe</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">어니언 성수</h3>
+          <p class="list-item__desc">루프탑 카페 · 오늘 바람 3m/s로 앉기 좋음</p>
+          <div class="list-item__meta">
+            <span class="muted" style="font-size:11px">· 도보 6분</span>
+            <span class="chip chip--tone-orange" style="height:22px;font-size:11px">루프탑</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--good">78</span>
+          <span class="muted" style="font-size:11px">0.5km</span>
+        </div>
+      </article>
+
+      <article class="list-item" style="grid-template-columns:60px 1fr auto">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#EEF0FF,#C4C8FF)">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-blue-dark)">directions_walk</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">뚝섬 한강공원</h3>
+          <p class="list-item__desc">바람 약함 · 피크닉 · 일몰 18:52</p>
+          <div class="list-item__meta">
+            <span class="muted" style="font-size:11px">· 자전거 8분</span>
+            <span class="chip chip--tone-blue" style="height:22px;font-size:11px">한강</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--good">75</span>
+          <span class="muted" style="font-size:11px">1.6km</span>
+        </div>
+      </article>
+
+      <article class="list-item" style="grid-template-columns:60px 1fr auto">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#F7EBFF,#C871FD)">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:#8a4ed3">museum</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">디뮤지엄</h3>
+          <p class="list-item__desc">실내 전시 · 자외선 회피 옵션</p>
+          <div class="list-item__meta">
+            <span class="muted" style="font-size:11px">· 도보 18분</span>
+            <span class="chip chip--tone-purple" style="height:22px;font-size:11px">실내</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--good">68</span>
+          <span class="muted" style="font-size:11px">1.4km</span>
+        </div>
+      </article>
+
+      <article class="list-item" style="grid-template-columns:60px 1fr auto">
+        <div class="list-item__thumb" style="background:linear-gradient(135deg,#FFF0EB,#FE7C52)">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:#a8390f">restaurant</span>
+        </div>
+        <div>
+          <h3 class="list-item__title">성수동 미식 거리</h3>
+          <p class="list-item__desc">점심 피크 시간 · 평균 대기 15분</p>
+          <div class="list-item__meta">
+            <span class="muted" style="font-size:11px">· 도보 4분</span>
+            <span class="chip chip--tone-orange" style="height:22px;font-size:11px">맛집</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="score-chip score-chip--fair">58</span>
+          <span class="muted" style="font-size:11px">0.3km</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Permission banner example (fallback state reference) -->
+    <!--
+    <div class="banner banner--warning">
+      <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--brand-orange)">location_off</span>
+      <div style="flex:1">
+        <p class="banner__title">위치 권한이 꺼져 있어요</p>
+        <p class="banner__msg">정확한 주변 추천을 위해 위치 접근을 허용해주세요.</p>
+      </div>
+      <button class="btn btn--tonal btn--sm">허용</button>
+    </div>
+    -->
+  </main>
+
+  <button class="fab" aria-label="지도 보기">
+    <span class="material-symbols-rounded icon-filled" aria-hidden="true">map</span>
+  </button>
+
+  <nav class="bottom-nav" aria-label="주 탐색">
+    <a class="bottom-nav__item" href="home.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">home</span></span>홈</a>
+    <a class="bottom-nav__item" href="score.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">analytics</span></span>스코어</a>
+    <a class="bottom-nav__item" href="place.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">explore</span></span>장소</a>
+    <a class="bottom-nav__item bottom-nav__item--active" href="nearby.html" aria-current="page"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">near_me</span></span>주변</a>
+    <a class="bottom-nav__item" href="dday.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">event</span></span>D-day</a>
+  </nav>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>

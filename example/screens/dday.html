@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>D-day · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app app--flat">
+  <header class="top-app-bar">
+    <h1 class="top-app-bar__title">D-day</h1>
+    <button class="icon-btn" aria-label="정렬"><span class="material-symbols-rounded" aria-hidden="true">sort</span></button>
+  </header>
+
+  <main id="main">
+    <!-- Highlight D-day -->
+    <section style="padding:12px 16px 0">
+      <article class="card card--elevated" style="padding:20px;background:linear-gradient(135deg,var(--brand-blue-light),#fff);border-color:var(--brand-blue-mid)">
+        <div class="row--between" style="margin-bottom:10px">
+          <div class="row" style="gap:6px">
+            <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:var(--brand-blue)">event</span>
+            <span style="font-size:13px;font-weight:700;color:var(--brand-blue-dark)">가장 가까운 일정</span>
+          </div>
+          <button class="icon-btn" aria-label="수정"><span class="material-symbols-rounded" aria-hidden="true">edit</span></button>
+        </div>
+        <h2 style="margin:0;font-size:22px;font-weight:800;letter-spacing:-0.4px">제주 가족여행</h2>
+        <p class="muted" style="margin:4px 0 14px;font-size:13px">2026년 5월 10일 · 협재 해수욕장</p>
+
+        <div class="row" style="gap:12px;align-items:baseline;margin-bottom:12px">
+          <div style="display:flex;align-items:baseline;gap:4px">
+            <span class="muted" style="font-size:12px;font-weight:700">D -</span>
+            <span class="tabular" style="font-size:48px;line-height:1;font-weight:800;color:var(--brand-blue-dark);letter-spacing:-2px">23</span>
+          </div>
+          <span class="score-chip score-chip--excellent">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">trending_up</span>
+            Climate Score 86
+          </span>
+        </div>
+
+        <!-- Forecast preview -->
+        <div class="row" style="gap:8px;margin-bottom:12px">
+          <div class="stat" style="flex:1;padding:10px;background:rgba(255,255,255,0.7)">
+            <div class="stat__label" style="font-size:11px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">water_drop</span>강수 확률</div>
+            <div class="stat__value" style="font-size:18px">18<span style="font-size:11px">%</span></div>
+          </div>
+          <div class="stat" style="flex:1;padding:10px;background:rgba(255,255,255,0.7)">
+            <div class="stat__label" style="font-size:11px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">device_thermostat</span>평균 기온</div>
+            <div class="stat__value" style="font-size:18px">20°C</div>
+          </div>
+          <div class="stat" style="flex:1;padding:10px;background:rgba(255,255,255,0.7)">
+            <div class="stat__label" style="font-size:11px"><span class="material-symbols-rounded" aria-hidden="true" style="font-size:14px">air</span>미세먼지</div>
+            <div class="stat__value" style="font-size:18px">좋음</div>
+          </div>
+        </div>
+
+        <div class="row" style="gap:8px">
+          <button class="btn btn--filled btn--sm" style="flex:1">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:18px">notifications_active</span>
+            알림 설정됨
+          </button>
+          <button class="btn btn--outlined btn--sm" style="flex:1">
+            <span class="material-symbols-rounded" aria-hidden="true" style="font-size:18px">tune</span>
+            상세
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Other events -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">다가오는 일정 3건</h2>
+      </div>
+    </section>
+
+    <div class="list" style="padding-bottom: 20px">
+      <article class="list-item" style="grid-template-columns:52px 1fr auto">
+        <div class="list-item__thumb" style="width:52px;height:52px;background:var(--brand-blue-light);color:var(--brand-blue-dark);border-radius:var(--radius-md)">
+          <div style="text-align:center;line-height:1.1">
+            <div style="font-size:10px;font-weight:700;opacity:0.7">D-</div>
+            <div class="tabular" style="font-size:18px;font-weight:800">42</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="list-item__title">부산 여름 휴가</h3>
+          <p class="list-item__desc">6월 28일 · 해운대</p>
+          <div class="list-item__meta">
+            <span class="score-chip score-chip--fair">Score 56</span>
+            <span class="muted" style="font-size:11px">강수 40% 주의</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+        </div>
+      </article>
+
+      <article class="list-item" style="grid-template-columns:52px 1fr auto">
+        <div class="list-item__thumb" style="width:52px;height:52px;background:var(--score-excellent-bg);color:var(--score-excellent);border-radius:var(--radius-md)">
+          <div style="text-align:center;line-height:1.1">
+            <div style="font-size:10px;font-weight:700;opacity:0.7">D-</div>
+            <div class="tabular" style="font-size:18px;font-weight:800">68</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="list-item__title">아내 생일 · 강원 펜션</h3>
+          <p class="list-item__desc">7월 24일 · 양양</p>
+          <div class="list-item__meta">
+            <span class="score-chip score-chip--excellent">Score 82</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+        </div>
+      </article>
+
+      <article class="list-item" style="grid-template-columns:52px 1fr auto">
+        <div class="list-item__thumb" style="width:52px;height:52px;background:var(--score-fair-bg);color:var(--score-fair);border-radius:var(--radius-md)">
+          <div style="text-align:center;line-height:1.1">
+            <div style="font-size:10px;font-weight:700;opacity:0.7">D-</div>
+            <div class="tabular" style="font-size:18px;font-weight:800">103</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="list-item__title">가을 경주 답사</h3>
+          <p class="list-item__desc">9월 28일</p>
+          <div class="list-item__meta">
+            <span class="score-chip score-chip--good">Score 72</span>
+            <span class="muted" style="font-size:11px">기후 예측 정확도 보통</span>
+          </div>
+        </div>
+        <div class="list-item__right">
+          <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Reminder settings (inline) -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">알림 리마인더</h2>
+      </div>
+    </section>
+    <div class="card card--outlined" style="margin:0 16px 24px;padding:0">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <div>
+          <div style="font-size:14px;font-weight:700">D-30 알림</div>
+          <div class="muted" style="font-size:12px">한 달 전 기후 안정성 체크</div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--brand-blue);border-radius:999px;position:relative">
+          <div style="position:absolute;right:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <div>
+          <div style="font-size:14px;font-weight:700">D-7 알림</div>
+          <div class="muted" style="font-size:12px">예보 정확도 상승 구간</div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--brand-blue);border-radius:999px;position:relative">
+          <div style="position:absolute;right:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px">
+        <div>
+          <div style="font-size:14px;font-weight:700">D-1 알림</div>
+          <div class="muted" style="font-size:12px">당일 출발 전 최종 체크</div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--gray-300);border-radius:999px;position:relative">
+          <div style="position:absolute;left:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <button class="fab" aria-label="새 D-day 추가">
+    <span class="material-symbols-rounded icon-filled" aria-hidden="true">add</span>
+  </button>
+
+  <nav class="bottom-nav" aria-label="주 탐색">
+    <a class="bottom-nav__item" href="home.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">home</span></span>홈</a>
+    <a class="bottom-nav__item" href="score.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">analytics</span></span>스코어</a>
+    <a class="bottom-nav__item" href="place.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">explore</span></span>장소</a>
+    <a class="bottom-nav__item" href="nearby.html"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">near_me</span></span>주변</a>
+    <a class="bottom-nav__item bottom-nav__item--active" href="dday.html" aria-current="page"><span class="bottom-nav__icon-wrap"><span class="material-symbols-rounded" aria-hidden="true">event</span></span>D-day</a>
+  </nav>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>마이페이지 · CLIMATE</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="../shared/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<div class="app app--flat app--no-nav">
+  <header class="back-bar">
+    <button class="icon-btn" aria-label="뒤로가기"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button>
+    <h1 class="back-bar__title">마이페이지</h1>
+    <button class="icon-btn" aria-label="설정"><span class="material-symbols-rounded" aria-hidden="true">settings</span></button>
+  </header>
+
+  <main id="main">
+    <!-- Profile -->
+    <section style="padding:16px 16px 0">
+      <div class="card card--elevated" style="padding:20px">
+        <div class="row" style="gap:14px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:var(--radius-full);background:linear-gradient(135deg,var(--brand-blue),var(--brand-purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:800">YK</div>
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:800">강용진</div>
+            <div class="muted" style="font-size:12px">yj@example.com</div>
+          </div>
+          <button class="btn btn--outlined btn--sm">편집</button>
+        </div>
+        <div class="row" style="gap:8px;margin-top:14px">
+          <div style="flex:1;text-align:center;padding:10px;border-radius:var(--radius-md);background:var(--brand-blue-light)">
+            <div class="tabular" style="font-size:18px;font-weight:800;color:var(--brand-blue-dark)">12</div>
+            <div class="muted" style="font-size:11px">저장한 D-day</div>
+          </div>
+          <div style="flex:1;text-align:center;padding:10px;border-radius:var(--radius-md);background:var(--brand-green-light)">
+            <div class="tabular" style="font-size:18px;font-weight:800;color:var(--brand-green-dark)">34</div>
+            <div class="muted" style="font-size:11px">기록한 날씨</div>
+          </div>
+          <div style="flex:1;text-align:center;padding:10px;border-radius:var(--radius-md);background:var(--brand-orange-light)">
+            <div class="tabular" style="font-size:18px;font-weight:800;color:var(--brand-orange)">8</div>
+            <div class="muted" style="font-size:11px">비교한 도시</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscription -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">구독</h2>
+      </div>
+    </section>
+    <div class="card card--outlined" style="margin:0 16px 16px;padding:16px;background:linear-gradient(135deg,var(--brand-blue-light),#fff);border-color:var(--brand-blue-mid)">
+      <div class="row--between" style="margin-bottom:10px">
+        <div>
+          <div class="row" style="gap:6px">
+            <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:var(--brand-blue)">workspace_premium</span>
+            <span style="font-size:15px;font-weight:800">CLIMATE Plus</span>
+          </div>
+          <div class="muted" style="font-size:12px;margin-top:2px">다음 결제일 2026.06.04</div>
+        </div>
+        <span class="chip chip--tone-blue" style="height:24px">구독중</span>
+      </div>
+      <div class="muted" style="font-size:12px;margin-top:8px">• 무제한 도시 비교 · 월별 Climate Score 고도화 · 알림 확장</div>
+      <button class="btn btn--outlined btn--block btn--sm" style="margin-top:12px">구독 관리</button>
+    </div>
+
+    <!-- Mode layer (인라인) -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">개인화 레이어</h2>
+      </div>
+    </section>
+    <div class="card card--outlined" style="margin:0 16px 16px;padding:0">
+      <div class="row--between" style="padding:14px 16px;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <div class="row" style="gap:10px">
+          <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:var(--brand-purple);font-size:22px">favorite</span>
+          <div>
+            <div style="font-size:14px;font-weight:700">연인 레이어</div>
+            <div class="muted" style="font-size:12px">골든아워 · 로맨틱 조건 가중</div>
+          </div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--brand-blue);border-radius:999px;position:relative">
+          <div style="position:absolute;right:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+      <div class="row--between" style="padding:14px 16px">
+        <div class="row" style="gap:10px">
+          <span class="material-symbols-rounded icon-filled" aria-hidden="true" style="color:var(--brand-green-dark);font-size:22px">family_restroom</span>
+          <div>
+            <div style="font-size:14px;font-weight:700">가족 레이어</div>
+            <div class="muted" style="font-size:12px">안전 · KidSafetyScore 우선</div>
+          </div>
+        </div>
+        <div style="width:44px;height:24px;background:var(--gray-300);border-radius:999px;position:relative">
+          <div style="position:absolute;left:2px;top:2px;width:20px;height:20px;border-radius:999px;background:#fff"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings list -->
+    <section class="section">
+      <div class="section__header">
+        <h2 class="section__title">설정</h2>
+      </div>
+    </section>
+    <div class="card card--outlined" style="margin:0 16px 24px;padding:0">
+      <button style="display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border:none;background:transparent;cursor:pointer;text-align:left;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">notifications</span>
+        <span style="flex:1;font-size:14px;font-weight:600">알림 설정</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+      </button>
+      <button style="display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border:none;background:transparent;cursor:pointer;text-align:left;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">location_on</span>
+        <span style="flex:1;font-size:14px;font-weight:600">위치 권한</span>
+        <span class="muted" style="font-size:12px">허용됨</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+      </button>
+      <button style="display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border:none;background:transparent;cursor:pointer;text-align:left;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">dark_mode</span>
+        <span style="flex:1;font-size:14px;font-weight:600">화면 모드</span>
+        <span class="muted" style="font-size:12px">라이트</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+      </button>
+      <button style="display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border:none;background:transparent;cursor:pointer;text-align:left;border-bottom:1px solid var(--md-sys-color-outline-variant)">
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">description</span>
+        <span style="flex:1;font-size:14px;font-weight:600">이용약관 · 개인정보</span>
+        <span class="material-symbols-rounded" aria-hidden="true" style="color:var(--md-sys-color-on-surface-variant)">chevron_right</span>
+      </button>
+      <button style="display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border:none;background:transparent;cursor:pointer;text-align:left;color:var(--score-poor)">
+        <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+        <span style="flex:1;font-size:14px;font-weight:600">로그아웃</span>
+      </button>
+    </div>
+  </main>
+</div>
+<script src="../shared/shell.js" defer></script>
+</body>
+</html>
