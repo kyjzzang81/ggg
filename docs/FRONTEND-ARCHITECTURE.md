@@ -1,4 +1,4 @@
-# CLIMATE Frontend Architecture
+# ggg Frontend Architecture
 
 > 목적: Next.js 15 App Router + Supabase + TanStack Query 기반의 프론트엔드 구조를 고정한다.
 > 기준: `MVP-SCOPE.md` §3 기술 스택 · `DEV-SPEC.md` · `NAVIGATION-FLOW.md`
@@ -37,7 +37,7 @@ src/
 │
 ├── components/
 │   ├── layout/                # AppBar, Sidebar, BottomTabs, PageHeader
-│   ├── score/                 # ClimateScoreBadge, ScoreCalendar, ScoreBar
+│   ├── score/                 # GggScoreBadge, ScoreCalendar, ScoreBar
 │   ├── place/                 # PlaceCard, PlaceList, PlaceDetailSheet
 │   ├── dday/                  # DdayCard, DdayTimeline, DdayForm
 │   ├── forecast/              # ForecastTile, WeatherThemeProvider
@@ -88,7 +88,7 @@ src/
 │   └── tailwind.css
 │
 └── types/
-    ├── models.ts              # 도메인 모델 (Climate, Place, Dday …)
+    ├── models.ts              # 도메인 모델 (City, Forecast, GggScore, Place, Dday …)
     └── events.ts              # analytics 이벤트 타입
 ```
 
@@ -180,10 +180,10 @@ export const qk = {
 
 ```ts
 // src/features/climate-score/queries.ts
-export function useClimateScore(cityId: string, from: string, to: string) {
+export function useGggScore(cityId: string, from: string, to: string) {
   return useQuery({
     queryKey: qk.climateScore(cityId, from, to),
-    queryFn: () => fetchClimateScore({ cityId, from, to }),
+    queryFn: () => fetchGggScore({ cityId, from, to }),
     enabled: !!cityId && !!from && !!to,
     staleTime: 10 * 60_000,
   });

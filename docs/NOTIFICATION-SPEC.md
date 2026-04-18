@@ -1,4 +1,4 @@
-# CLIMATE Notification Spec
+# ggg Notification Spec
 
 > 목적: D-day/운영 알림의 트리거, 채널, 페이로드, 실패 대응을 정의한다.
 > 기준: `MVP-SCOPE.md`, `AUTH-SPEC.md`, `EDGE-FUNCTIONS.md`

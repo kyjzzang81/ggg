@@ -1,4 +1,4 @@
-# CLIMATE Metrics & KPI Spec
+# ggg Metrics & KPI Spec
 
 > 목적: Phase 1 핵심 KPI의 산식, 이벤트, 대시보드 기준을 정의한다.
 > 기준: `PRD.md`, `MVP-SCOPE.md`, `USER-JOURNEY.md`

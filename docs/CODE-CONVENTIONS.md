@@ -1,4 +1,4 @@
-# CLIMATE Code Conventions
+# ggg Code Conventions
 
 > 목적: Phase 1 MVP 구현 시 코드 스타일, 파일 구조, 네이밍, 품질 게이트를 통일한다.
 > 기준: `FRONTEND-ARCHITECTURE.md`, `STATE-MANAGEMENT.md`, `MVP-SCOPE.md`
@@ -18,7 +18,7 @@
 
 | 대상 | 규칙 | 예시 |
 |---|---|---|
-| 컴포넌트 파일 | PascalCase | `ClimateScoreCard.tsx` |
+| 컴포넌트 파일 | PascalCase | `GggScoreCard.tsx` |
 | 훅 파일 | `use-*.ts` 또는 `use*.ts` 통일 | `useRequireAuth.ts` |
 | 스토어 파일 | `*Store.ts` | `modeStore.ts` |
 | 유틸 파일 | kebab-case | `score-grade.ts` |
@@ -43,7 +43,7 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { qk } from '@/lib/query/keys';
-import { fetchClimateScore } from '@/features/climate-score/api';
+import { fetchGggScore } from '@/features/ggg-score/api';
 
 import './styles.css';
 ```

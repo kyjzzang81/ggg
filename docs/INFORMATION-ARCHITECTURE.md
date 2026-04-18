@@ -1,4 +1,4 @@
-# CLIMATE Information Architecture
+# ggg Information Architecture
 
 > 목적: 하단 탭 5 × 사이드 패널 5 × 모드 레이어의 화면 이동 구조를 한눈에 고정한다.
 > 기준: `PRD.md` §4 · `SCREEN-SPEC.md` · `MVP-SCOPE.md`
@@ -118,7 +118,7 @@ flowchart TB
 | 화면 | 기본 | + 연인 ON | + 가족 ON |
 |---|---|---|---|
 | 홈 | 현재/예보/5일 | + 골든아워 배지 | + KidSafetyScore 배지 |
-| 스코어 | Climate Score | + 골든아워 품질 점수 | + 어린이 안전 지수 |
+| 스코어 | ggg score | + 골든아워 품질 점수 | + 어린이 안전 지수 |
 | 장소 추천 | 기후 기반 상위 | 로맨틱/일몰 가중 | 안전/실내 우선 |
 | 주변 | 거리·카테고리 | 포토스팟/야경 우선 | 키즈카페/실내 우선 |
 

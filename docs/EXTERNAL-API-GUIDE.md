@@ -1,4 +1,4 @@
-# CLIMATE External API Guide
+# ggg External API Guide
 
 > 목적: Phase 1에서 사용하는 외부 API의 발급 절차, 쿼터, fallback 정책을 정리한다.
 > 기준: `ENV-SETUP.md`, `MVP-SCOPE.md`, `API-SPEC.md`
@@ -9,9 +9,10 @@
 
 | API | 목적 | Phase |
 |---|---|---|
-| Open-Meteo | 예보/역사 기후 | 1 |
+| Open-Meteo | 예보/역사 기후(웹 홈은 브라우저에서 Forecast API 직접 호출 가능) | 1 |
 | AirKorea | 국내 미세먼지 | 1 |
-| TourAPI v2 | 국내 관광 POI | 1 |
+| TourAPI v2 | 국내 관광 POI(장소 추천·홈 콘텐츠 등) | 1 |
+| Naver Cloud (Maps / Local Search) | **주변(Nearby)** POI·썸네일·요약 | 1 |
 | Kakao Local | 국내 지오코딩/역지오코딩 | 1 |
 | Google Maps | 해외 지오코딩/Places | 1 |
 | KMA Open API | TCI 보강 | 1.5 |
@@ -24,6 +25,7 @@
 ```bash
 VITE_AIRKOREA_API_KEY=
 VITE_TOURAPI_KEY=
+VITE_NAVER_MAP_CLIENT_ID=
 VITE_KAKAO_REST_KEY=
 VITE_GOOGLE_MAPS_API_KEY=
 VITE_KMA_API_KEY=        # Phase 1.5
@@ -57,7 +59,14 @@ VITE_IQAIR_API_KEY=      # Phase 1.5
 ### 3-3. TourAPI v2
 
 - 발급처: 공공데이터포털
-- 용도: 장소 추천/주변 추천 데이터
+- 용도: **장소 추천(`/place`)·날씨 연동 콘텐츠** 등 (Nearby 전용 소스 아님)
+- fallback: 캐시·정적 추천 카드
+
+### 3-3b. Naver Cloud — Nearby 전용
+
+- 발급처: 네이버 클라우드 플랫폼 (Maps / 검색·Local API 조합은 설계 시 확정)
+- 용도: **주변 탭** 리스트(썸네일·명칭·카테고리·요약). 위치 반경 검색 후 `nearby_places`에 캐시
+- 주의: 이용약관·일일 호출 한도·**클라이언트 키 노출** — 가능하면 Edge Function에서 호출
 - fallback:
   - API 실패 시 `nearby_places` 캐시 우선 노출
 
@@ -123,7 +132,7 @@ UI 라벨 예:
 
 1. Open-Meteo 장애
 2. AirKorea 측정소 매핑 문제
-3. TourAPI 응답 지연/빈값
+3. Naver/TourAPI 응답 지연/빈값
 4. 지오코딩 API(Kakao/Google) 제한 초과
 
 ---

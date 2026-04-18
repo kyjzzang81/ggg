@@ -10,8 +10,8 @@
 |---|---|---|---|
 | `refresh-forecast` | 운영중/필수 | cron(일 1회) | 14일 예보 갱신 |
 | `build-climate-frequency` | 필요 | 수동 + 정기 | 날짜별 빈도 집계 |
-| `build-climate-scores` | 필요 | 수동/월 1회 | 월별 점수 캐시 생성 |
-| `adjust-subscription-price` | 필요 | 월 1회 | 방문 기반 가격 조정 |
+| `build-climate-scores` | 필요 | 수동/월 1회 | ggg score 월별 캐시(`climate_score_monthly`) 생성 |
+| `adjust-subscription-price` | 보류 | — | 구독 미도입 시 불필요 |
 | `track-session` | 필요 | 앱 진입 시 | 방문 로그 기록 |
 
 ---
@@ -41,16 +41,14 @@
 
 - 입력: optional `city_id`
 - 처리:
-  - `best_travel_week` -> `climate_score_monthly`
+  - `best_travel_week` → `climate_score_monthly`(사용자 대면 명칭 **ggg score** 월별 캐시)
 - 출력: 도시별 처리 요약
 
-## 2-4. `adjust-subscription-price`
+## 2-4. `adjust-subscription-price` (구독 도입 시만)
 
+- Phase 1 **결제·구독 없음**이면 구현하지 않음.
 - 입력: 없음(배치 기준월 내부 계산)
-- 처리:
-  - 전월 방문 횟수 조회(`user_sessions`)
-  - `user_subscriptions` status/price 업데이트
-- 출력: 대상/변경 건수
+- 처리: 전월 `user_sessions` → `user_subscriptions` 갱신(설계는 `DEV-SPEC.md` 참고)
 
 ## 2-5. `track-session`
 
@@ -65,7 +63,7 @@
 ## 3. 스케줄 정책
 
 - `refresh-forecast`: 매일 02:00 KST
-- `adjust-subscription-price`: 매월 1일 00:00 KST
+- `adjust-subscription-price`: 구독 운영 시만 매월 1일 00:00 KST
 - `build-climate-frequency`: 초기 수동 + 주기 갱신(월/분기)
 - `build-climate-scores`: 월 1회 또는 데이터 갱신 후
 

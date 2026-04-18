@@ -1,4 +1,4 @@
-# CLIMATE Secrets Policy
+# ggg Secrets Policy
 
 > 목적: 시크릿/API 키 관리 규칙을 표준화해 유출 리스크를 줄인다.
 

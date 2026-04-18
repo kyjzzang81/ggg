@@ -104,7 +104,7 @@
 | `USER-JOURNEY.md` | 필수 | [자동] | 페르소나 3종(계획파/커플/가족)의 대표 시나리오를 화면 이동 단계로 서술. PRD에서 파생 가능. |
 | `INFORMATION-ARCHITECTURE.md` | 필수 | [자동] | 하단탭 5개 × 사이드 패널 × 모드 레이어의 화면 이동 flow 다이어그램 (mermaid). |
 | `MVP-SCOPE.md` | 필수 | [협업] | PRD의 기능 표를 "Phase 1 포함 / 제외 / 유보"로 확정 정리. 초안 생성 후 사업 결정 필요. 현재 `PRD.md`와 `DEV-SPEC.md` §13이 일부 상충. |
-| `GLOSSARY.md` | 필수 | [자동] | Climate Score™, TCI, 골든아워 품질점수, KidSafetyScore, 연인/가족 레이어, 에코트립 등 용어 정의. |
+| `GLOSSARY.md` | 필수 | [자동] | ggg score, TCI, 골든아워 품질점수, KidSafetyScore, 연인/가족 레이어, 에코트립 등 용어 정의. |
 | `METRICS-KPI.md` | 필수 | [협업] | PRD KPI(예: 비수기 지역 예약 비율 ≥20%)의 측정 이벤트와 산식 정의. 이벤트 네이밍은 사용자 확정 필요. |
 | `COMPETITOR-ANALYSIS.md` | 선택 | [협업] | 카카오맵/웨더뉴스/AccuWeather/마이리얼트립 대비 포지셔닝. 조사 초안 + 내부 인사이트 병합. |
 
@@ -194,7 +194,7 @@ Repo 루트에 `README.md` 조차 없음.
 | `FRONTEND-ARCHITECTURE.md` | 필수 | [자동] | React Router v6 라우팅 트리, 레이아웃 계층(Root > TabLayout > Screen), TanStack Query + Supabase 데이터 패칭 패턴. |
 | `STATE-MANAGEMENT.md` | 필수 | [자동] | Zustand 스토어 목록(`modeStore`, `locationStore`, `userStore`)과 state shape, persist 여부. |
 | `SCREEN-SPEC.md` | 필수 | [자동] | 10개 화면(탭5 + 사이드5) 각각의 data source / loading / empty / error / auth-required / 레이어 ON-OFF 조건. |
-| `CALENDAR-SCORE-UX.md` | 필수 | [협업] | Climate Score/장소추천 날짜 선택 캘린더에 날짜별 점수/추천도(강력 추천~비추천) 표현 규칙. 스카이스캐너형 UI 패턴, 색상 구간, 모바일/PC 상호작용 정의. |
+| `CALENDAR-SCORE-UX.md` | 필수 | [협업] | ggg score/장소추천 날짜 선택 캘린더에 날짜별 점수/추천도(강력 추천~비추천) 표현 규칙. 스카이스캐너형 UI 패턴, 색상 구간, 모바일/PC 상호작용 정의. |
 | `NAVIGATION-FLOW.md` | 필수 | [자동] | URL 구조(`/`, `/score`, `/place`, `/nearby`, `/dday`, `/hidden-season`, `/compare`, `/impact`, `/mypage`), 딥링크, 뒤로가기 정책. |
 | `FORM-VALIDATION.md` | 선택 | [자동] | Zod 스키마 모음 (도시 검색, D-day 저장, 장소 추천 입력). |
 | `PWA-SPEC.md` | 선택 | [자동] | Service Worker 캐싱, manifest, 설치 배너. |
@@ -211,7 +211,7 @@ Repo 루트에 `README.md` 조차 없음.
 | 문서 | 중요도 | 주체 | 설명 |
 |---|---|---|---|
 | `TESTING-STRATEGY.md` | 필수 | [자동] | Unit(Vitest) / Component(Testing Library) / E2E(Playwright) 피라미드, 커버리지 목표. |
-| `UNIT-TEST-TARGETS.md` | 필수 | [자동] | 핵심 로직 우선순위 (Climate Score 계산, KidSafetyScore, GoldenHourScore, WMO→테마 매핑, day_of_year 변환, 윤년 처리). |
+| `UNIT-TEST-TARGETS.md` | 필수 | [자동] | 핵심 로직 우선순위 (ggg score 계산, KidSafetyScore, GoldenHourScore, WMO→테마 매핑, day_of_year 변환, 윤년 처리). |
 | `QA-CHECKLIST.md` | 필수 | [자동] | 날씨 테마 8종 × 3 브레이크포인트 × 2 레이어 수동 검증 매트릭스. |
 | `E2E-SCENARIOS.md` | 선택 | [자동] | Playwright 필수 시나리오 (회원가입 → D-day 저장 → 알림 / 구독 결제 / 레이어 토글 / 권한 거부 fallback). |
 | `ACCESSIBILITY-TEST.md` | 선택 | [자동] | axe-core 자동화 + 스크린리더 수동 시나리오. |
@@ -271,7 +271,7 @@ Repo 루트에 `README.md` 조차 없음.
 |---|---|---|---|---|
 | 11 | `USER-JOURNEY.md` | [자동] | 완료 | 페르소나 3종 여정을 화면/이벤트로 고정. |
 | 12 | `INFORMATION-ARCHITECTURE.md` | [자동] | 완료 | 하단탭 5 × 사이드패널 5 × 모드 레이어 flow. |
-| 13 | `GLOSSARY.md` | [자동] | 완료 | Climate Score™ 등 용어 Single Source. |
+| 13 | `GLOSSARY.md` | [자동] | 완료 | ggg score 등 용어 Single Source. |
 | 14 | `NAVIGATION-FLOW.md` | [자동] | 완료 | URL·쿼리·딥링크·뒤로가기 정책. |
 | 15 | `FRONTEND-ARCHITECTURE.md` | [자동] | 완료 | 라우팅 트리·레이아웃·데이터 패칭 패턴. |
 | 16 | `STATE-MANAGEMENT.md` | [자동] | 완료 | Zustand 스토어 shape + Query 경계. |

@@ -1,4 +1,4 @@
-# CLIMATE Release Checklist
+# ggg Release Checklist
 
 > 목적: Phase 1 배포 시 누락 없이 릴리즈하기 위한 실행 체크리스트.
 > 기준: `DB-MIGRATIONS.md`, `EDGE-FUNCTIONS.md`, `ENV-SETUP.md`

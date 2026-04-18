@@ -1,4 +1,4 @@
-# CLIMATE Design System
+# ggg Design System
 
 > 목적: `PRD.md`와 `DEV-SPEC.md`의 UI 규칙을 하나의 기준 문서로 통합해, 화면 구현 시 일관된 시각/상호작용 품질을 보장한다.
 
@@ -185,7 +185,7 @@
 ## 6. Core Components (v1)
 
 - `<HeroCard />`
-- `<ClimateScoreBadge />`
+- `<GggScoreBadge />`
 - `<StatCard />`
 - `<ForecastStrip />`
 - `<MonthlyBarChart />`

@@ -1,4 +1,4 @@
-# CLIMATE State Management
+# ggg State Management
 
 > 목적: 클라이언트 상태는 Zustand, 서버 상태는 TanStack Query로 분리한다. 본 문서는 **클라이언트 상태(Zustand)의 스토어 shape**과 서버 상태 책임 경계를 고정한다.
 > 기준: `FRONTEND-ARCHITECTURE.md` · `NAVIGATION-FLOW.md` · `USER-JOURNEY.md`
@@ -9,7 +9,7 @@
 
 | 종류 | 도구 | 예시 |
 |---|---|---|
-| 서버 원본 데이터 | TanStack Query | 예보, Climate Score, 장소, D-day 목록 |
+| 서버 원본 데이터 | TanStack Query | 예보, ggg score, 장소, D-day 목록 |
 | 세션/프로필 | TanStack Query + Zustand mirror | 현재 사용자, 구독 상태 |
 | UI/설정 | Zustand (persist) | 모드 레이어, 테마 강도, 최근 위치 |
 | 일회성 UI | React state | 모달 open, 폼 입력 |
@@ -229,7 +229,7 @@ export interface UIState {
 
 클라이언트 스토어에 **서버 데이터를 복사하지 않는다.** 다음은 모두 Query로 관리:
 
-- `useClimateScore`, `useForecast`, `usePlaces`, `useNearby`
+- `useGggScore`, `useForecast`, `usePlaces`, `useNearby`
 - `useDdayList`, `useDdayDetail`
 - `useMe` (세션 + profile)
 

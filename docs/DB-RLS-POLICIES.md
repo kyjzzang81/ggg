@@ -1,4 +1,4 @@
-# CLIMATE DB RLS Policies
+# ggg DB RLS Policies
 
 > 목적: Supabase Postgres의 Row Level Security 정책을 테이블 단위로 통합 정의한다.
 > 기준: `DB-SCHEMA.md` · `DB-ERD.md` · `DB-GAP-ANALYSIS.md` §4
@@ -214,7 +214,7 @@ alter table hourly_weather enable row level security;
 Premium 여부를 JWT에 담아 성능을 개선할 수 있다 (Phase 1.5+).
 
 ```sql
--- 예시: Climate Plus 전용 자료에 정책 추가 시
+-- 예시: ggg Plus 전용 자료에 정책 추가 시
 using ((auth.jwt() ->> 'plan') = 'plus')
 ```
 

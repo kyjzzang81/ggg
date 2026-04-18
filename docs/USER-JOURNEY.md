@@ -1,4 +1,4 @@
-# CLIMATE User Journey
+# ggg User Journey
 
 > 목적: PRD 페르소나 3종의 대표 시나리오를 "진입 → 탐색 → 결정 → 재방문" 단계로 서술해 UI/데이터 요구를 고정한다.
 > 기준: `PRD.md` §2 페르소나 · `MVP-SCOPE.md` §2-2 핵심 화면 기능
@@ -38,7 +38,7 @@
 | R | D-30 알림 수신 → 예보 재확인 | 알림 → `/dday/:id` | `push_tap` | `forecast_weather` |
 | R | D-7 알림 · 예보 변동 체크 | `/dday/:id` | `forecast_refresh` | `forecast_weather` |
 
-**핵심 성공 신호**: Climate Score 확인 → 5분 내 D-day 저장. 재방문율(D-30/D-7 알림 tap rate) ≥ 40%.
+**핵심 성공 신호**: ggg score 확인 → 5분 내 D-day 저장. 재방문율(D-30/D-7 알림 tap rate) ≥ 40%.
 
 ---
 
@@ -92,7 +92,7 @@
 비로그인 사용자도 아래 흐름까지는 **기능 제약 없이** 완주한다.
 
 ```
-홈 → 도시 검색 → Climate Score → 캘린더 범위 선택 → 장소 추천 → 주변 열람
+홈 → 도시 검색 → ggg score → 캘린더 범위 선택 → 장소 추천 → 주변 열람
 ```
 
 제약 시점 (로그인 모달 표시):

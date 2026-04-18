@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.env.local
+.env.*.local
+web/.env.local
+
+web/node_modules
+web/dist

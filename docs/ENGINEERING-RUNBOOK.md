@@ -1,4 +1,4 @@
-# CLIMATE Engineering Runbook
+# ggg Engineering Runbook
 
 > 목적: 개발팀이 실제로 매일 쓰는 실행 기준을 한 문서에 통합한다.  
 > 통합 대상: `CODE-CONVENTIONS.md`, `TESTING-STRATEGY.md`, `UNIT-TEST-TARGETS.md`, `QA-CHECKLIST.md`, `RELEASE-CHECKLIST.md`
@@ -26,7 +26,7 @@
 - E2E/Smoke 15%
 
 ### P0 단위테스트 필수
-- Climate Score 계산/등급 경계값
+- ggg score 계산/등급 경계값
 - KidSafetyScore, GoldenHourScore
 - 윤년/day_of_year 변환
 - WMO -> 테마 매핑 fallback

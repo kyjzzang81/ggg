@@ -1,4 +1,4 @@
-# CLIMATE Unit Test Targets
+# ggg Unit Test Targets
 
 > 목적: MVP에서 반드시 보호해야 할 핵심 계산/변환 로직의 테스트 우선순위를 고정한다.
 > 기준: `TESTING-STRATEGY.md`, `GLOSSARY.md`, `MVP-SCOPE.md`
@@ -17,7 +17,7 @@
 
 | 모듈 | 케이스 | 기대 결과 |
 |---|---|---|
-| Climate Score 계산 | 입력 정상 범위 | 0~100 범위 점수 |
+| ggg score 계산 | 입력 정상 범위 | 0~100 범위 점수 |
 | Score Grade 변환 | 경계값(39/40, 59/60, 79/80) | 등급 정확 매핑 |
 | KidSafetyScore | UV/PM2.5 극단값 | 안전 등급 하향 |
 | GoldenHourScore | 운량/강수/가시거리 조합 | 점수 가중치 반영 |

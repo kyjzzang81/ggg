@@ -10,7 +10,7 @@
       title: '메인',
       items: [
         { id: 'home',           label: '홈',              icon: 'home',       href: 'home.html' },
-        { id: 'score',          label: 'Climate Score™', icon: 'analytics',  href: 'score.html' },
+        { id: 'score',          label: 'ggg score', icon: 'analytics',  href: 'score.html' },
         { id: 'place',          label: '장소 추천',        icon: 'explore',    href: 'place.html' },
         { id: 'nearby',         label: '주변',             icon: 'near_me',    href: 'nearby.html' },
         { id: 'hidden-season',  label: '숨은 황금 시즌',    icon: 'auto_awesome', href: 'hidden-season.html' },

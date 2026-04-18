@@ -1,4 +1,4 @@
-# CLIMATE Responsive Guide
+# ggg Responsive Guide
 
 > 목적: Mobile / Tablet / Desktop 3개 브레이크포인트의 그리드·여백·내비게이션 규칙을 고정한다.
 > 기준: `DESIGN-SYSTEM.md` · `example/shared/components.css` · `MVP-SCOPE.md`
@@ -143,7 +143,7 @@ CSS Grid 기반, `grid-template-columns`를 뷰포트별로 변화.
 
 | 컴포넌트 | Mobile | Tablet | Desktop |
 |---|---|---|---|
-| Climate Score 캘린더 | 7열 × 주별 스와이프 | 7열 × 전체 월 | 7열 × 월 2개 병렬 |
+| ggg score 캘린더 | 7열 × 주별 스와이프 | 7열 × 전체 월 | 7열 × 월 2개 병렬 |
 | 도시 비교 테이블 | 세로 카드 스택 | 2열 분할 | 3~4열 매트릭스 |
 | 차트(월평균 등) | 높이 220 | 260 | 300 |
 

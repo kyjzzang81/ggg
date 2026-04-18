@@ -1,4 +1,4 @@
-# CLIMATE DB Indexes
+# ggg DB Indexes
 
 > 목적: Phase 1 조회 패턴 기준 인덱스 최소 세트를 정의한다.
 

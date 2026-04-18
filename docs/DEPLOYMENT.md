@@ -1,4 +1,4 @@
-# CLIMATE Deployment
+# ggg Deployment
 
 > 목적: 웹앱 MVP 배포 절차를 단일 플로우로 고정한다.
 

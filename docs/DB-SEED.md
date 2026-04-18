@@ -1,4 +1,4 @@
-# CLIMATE DB Seed Guide
+# ggg DB Seed Guide
 
 > 목적: 로컬/스테이징 검증용 최소 seed 데이터를 표준화한다.
 

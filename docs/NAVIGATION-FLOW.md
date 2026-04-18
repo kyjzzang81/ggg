@@ -1,4 +1,4 @@
-# CLIMATE Navigation & URL Policy
+# ggg Navigation & URL Policy
 
 > 목적: Next.js App Router 기준 URL 체계, 쿼리 파라미터 규칙, 딥링크, 뒤로가기 정책을 고정한다.
 > 기준: `INFORMATION-ARCHITECTURE.md` · `SCREEN-SPEC.md` · `MVP-SCOPE.md`
@@ -10,7 +10,7 @@
 | Path | 이름 | 인증 | 레이아웃 | 설명 |
 |---|---|---|---|---|
 | `/` | Home | 선택 | TabLayout | 홈 대시보드 |
-| `/score` | Climate Score | 선택 | TabLayout | 점수·캘린더 |
+| `/score` | ggg score | 선택 | TabLayout | 점수·캘린더 |
 | `/place` | Place Recommend | 선택 | TabLayout | 장소 추천 리스트 |
 | `/place/[placeId]` | Place Detail | 선택 | TabLayout | 장소 상세 |
 | `/nearby` | Nearby | 선택 | TabLayout | 주변 추천 |

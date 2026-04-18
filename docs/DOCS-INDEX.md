@@ -1,4 +1,4 @@
-# CLIMATE Docs Index (Lean)
+# ggg Docs Index (Lean)
 
 > 목적: 문서 과다/중복 상태에서 기준 문서를 명확히 고정한다.
 

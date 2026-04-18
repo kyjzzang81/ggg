@@ -19,6 +19,7 @@ VITE_SUPABASE_ANON_KEY=
 
 VITE_AIRKOREA_API_KEY=
 VITE_TOURAPI_KEY=
+VITE_NAVER_MAP_CLIENT_ID=
 VITE_GOOGLE_MAPS_API_KEY=
 VITE_KAKAO_REST_KEY=
 ```
@@ -30,7 +31,7 @@ VITE_KAKAO_REST_KEY=
 ```bash
 VITE_KMA_API_KEY=
 VITE_IQAIR_API_KEY=
-VITE_TOSS_CLIENT_KEY=
+VITE_TOSS_CLIENT_KEY=   # 구독·결제 도입 시만
 VITE_SENTRY_DSN=
 ```
 
@@ -40,6 +41,7 @@ VITE_SENTRY_DSN=
 
 - Supabase: 프로젝트 대시보드
 - 에어코리아/TourAPI: 공공데이터포털(data.go.kr)
+- 네이버 클라우드: Nearby·국내 지도(콘솔에서 Maps / Search API 활성화)
 - Google Maps: Google Cloud Console
 - Kakao Local: Kakao Developers
 - KMA: 기상자료개방포털

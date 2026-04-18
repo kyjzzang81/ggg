@@ -1,4 +1,4 @@
-# CLIMATE QA Checklist
+# ggg QA Checklist
 
 > 목적: 출시 직전 수동 검증 항목을 통일해 회귀를 빠르게 잡는다.
 > 기준: `SCREEN-SPEC.md`, `RESPONSIVE-GUIDE.md`, `CALENDAR-SCORE-UX.md`

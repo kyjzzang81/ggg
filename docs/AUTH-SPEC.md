@@ -1,4 +1,4 @@
-# CLIMATE Auth Spec
+# ggg Auth Spec
 
 > 목적: Supabase Auth 기반 로그인/세션/권한 흐름을 Next.js App Router에서 어떻게 구현할지 고정한다.
 > 기준: `MVP-SCOPE.md` §2 · `FRONTEND-ARCHITECTURE.md` · `NAVIGATION-FLOW.md` · `DB-RLS-POLICIES.md`

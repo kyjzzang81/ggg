@@ -1,4 +1,4 @@
-# CLIMATE DB ERD
+# ggg DB ERD
 
 > 목적: Phase 1 MVP 기준 Supabase 스키마의 엔티티 관계를 한눈에 파악한다.
 > 기준: `DB-SCHEMA.md` · `DB-GAP-ANALYSIS.md` · `DB-MIGRATIONS.md`
@@ -8,7 +8,7 @@
 ## 1. 도메인 그룹
 
 - **RAW** — 외부에서 적재한 원시 데이터
-- **AGG/CLIMATE** — 집계·기후 정규값
+- **AGG / ggg 코어** — 집계·기후 정규값(`climate_normals` 등)
 - **FORECAST** — 예보 캐시
 - **FEATURE** — 서비스 피처 계산 결과
 - **UI** — 카드/캐릭터 맵 등 운영 콘텐츠

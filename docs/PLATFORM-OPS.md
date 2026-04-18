@@ -1,4 +1,4 @@
-# CLIMATE Platform Ops
+# ggg Platform Ops
 
 > 목적: 백엔드 운영/배포/외부연동 관련 기준을 한 문서로 묶어 운영 복잡도를 낮춘다.  
 > 통합 대상: `ENV-SETUP.md`, `AUTH-SPEC.md`, `NOTIFICATION-SPEC.md`, `EXTERNAL-API-GUIDE.md`, `RELEASE-CHECKLIST.md`

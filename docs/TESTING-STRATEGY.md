@@ -24,7 +24,7 @@
 ## 2-2. Component
 
 - `ScoreCalendar` 범위 선택
-- `ClimateScoreBadge` 라벨/색상 동시 표시
+- `GggScoreBadge` 라벨/색상 동시 표시
 - `MobileBottomNav` 활성 탭 전환
 
 ## 2-3. E2E (핵심 플로우)

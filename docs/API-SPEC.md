@@ -20,9 +20,9 @@
 
 ## 2-1. 현재/단기 예보
 
-- 소스: `forecast_weather`
-- 입력: `city_id`, 날짜 범위
-- 출력: 시간별 날씨 지표
+- 소스(우선순위): `cities.lat/lon`이 있으면 **Open-Meteo Forecast API**(클라이언트 직접 호출) → 실패·빈 응답 시 **`forecast_weather`**
+- 입력: `city_id`, 날짜 범위(또는 좌표 + `forecast_days`)
+- 출력: 시간별 날씨 지표(`temperature`, `weather_code`, `precipitation` 등)
 
 ## 2-2. 빈도 인사이트
 
@@ -38,7 +38,7 @@
 
 ---
 
-## 3. Climate Score
+## 3. ggg score
 
 ## 3-1. 주별 점수
 

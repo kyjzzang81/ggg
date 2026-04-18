@@ -1,4 +1,4 @@
-# CLIMATE Component Specification
+# ggg Component Specification
 
 > 목적: 화면 구현 전에 컴포넌트 계약(Props, 상태, 접근성, 반응형, 이벤트)을 고정해 프론트엔드 구현/리뷰 기준을 일치시킨다.
 
@@ -77,12 +77,12 @@ interface HeroCardProps {
 - 접근성
   - CTA 버튼 `aria-label`
 
-## 2-2. `ClimateScoreBadge`
+## 2-2. `GggScoreBadge`
 
 점수 + 등급 + 보조 라벨 표시.
 
 ```ts
-interface ClimateScoreBadgeProps {
+interface GggScoreBadgeProps {
   score: number; // 0~100
   grade: ScoreGrade;
   label?: string; // 예: "강력 추천"
@@ -137,7 +137,7 @@ interface ForecastStripProps {
 
 ## 2-5. `MonthlyBarChart`
 
-월별 Climate Score 차트.
+월별 ggg score 차트.
 
 ```ts
 interface MonthlyScorePoint {
@@ -308,10 +308,10 @@ interface MobileBottomNavProps {
 ## 3. 화면별 컴포넌트 조합
 
 - 홈: `HeroCard`, `StatCard`, `ForecastStrip`, `Tag`, `AlertBanner`
-- 스코어: `ScoreCalendar`, `ClimateScoreBadge`, `MonthlyBarChart`, `PercentileChart`
-- 장소추천: `ScoreCalendar`, `ListItem`, `Tag`, `ClimateScoreBadge`
+- 스코어: `ScoreCalendar`, `GggScoreBadge`, `MonthlyBarChart`, `PercentileChart`
+- 장소추천: `ScoreCalendar`, `ListItem`, `Tag`, `GggScoreBadge`
 - 주변: `ListItem`, `Tag`, `AlertBanner`
-- D-day: `ClimateScoreBadge`, `ForecastStrip`, `AlertBanner`
+- D-day: `GggScoreBadge`, `ForecastStrip`, `AlertBanner`
 - 공통: `Sidebar`, `MobileBottomNav`, `WeatherSwitcher`(운영 설정에 따라)
 
 ---
@@ -319,7 +319,7 @@ interface MobileBottomNavProps {
 ## 4. 구현 우선순위
 
 1. `MobileBottomNav`, `Sidebar` (레이아웃 고정)
-2. `ClimateScoreBadge`, `Tag`, `StatCard` (기초 UI)
+2. `GggScoreBadge`, `Tag`, `StatCard` (기초 UI)
 3. `ScoreCalendar` (핵심 차별 컴포넌트)
 4. `ListItem`, `ForecastStrip` (목록/예보)
 5. `MonthlyBarChart`, `PercentileChart` (차트)

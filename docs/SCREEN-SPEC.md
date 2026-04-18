@@ -1,4 +1,4 @@
-# CLIMATE Screen Specification
+# ggg Screen Specification
 
 > 목적: 화면 단위로 데이터 소스, 상태 처리, 접근 제어, 레이어 규칙을 고정한다.  
 > 범위: 하단 탭 5개 + 사이드 패널 5개 (총 10개 화면)
@@ -26,8 +26,8 @@
 
 - 목적: 현재 날씨 + 개인화 레이어 콘텐츠
 - 주요 데이터
-  - `forecast_weather`
-  - `climate_frequency`
+  - **시간별 예보(히어로·5일)**: `cities.lat/lon`이 있으면 **브라우저에서 Open-Meteo Forecast API 우선**(실패·빈 응답 시 `forecast_weather` DB)
+  - `climate_frequency` (홈 인사이트)
   - `home_cards`
 - 핵심 상호작용
   - 위치 권한 요청/거부 fallback
@@ -38,7 +38,7 @@
 
 ## 2-2. 스코어 (`/score`)
 
-- 목적: 날짜/시기별 Climate Score 탐색
+- 목적: 날짜/시기별 ggg score 탐색
 - 주요 데이터
   - `best_travel_week`
   - `climate_normals`
@@ -72,7 +72,7 @@
 - 주요 데이터
   - `cities` + 위치 좌표
   - `nearby_places` (캐시)
-  - TourAPI 결과(캐시 미스 시)
+  - **네이버** Local Search / Places 계열 API 결과(캐시 미스 시; TourAPI 대신)
 - 핵심 상호작용
   - 카테고리/거리 필터
   - 리스트 우선 (지도는 후순위)
