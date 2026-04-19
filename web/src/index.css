@@ -1,3 +1,37 @@
+/* ── 폰트 패밀리 변수 ── */
+:root {
+  --font-display: 'Wanted Sans', sans-serif;   /* h1, h2 */
+  --font-body:    'Pretendard', system-ui, -apple-system, sans-serif; /* 나머지 전부 */
+
+  /* Figma 타이포 스케일 (px → rem) */
+  --text-h1:    4rem;        /* 64px · lh 64/64 = 1   */
+  --lh-h1:      1;
+  --text-h2:    3rem;        /* 48px · lh 54/48 = 1.125 */
+  --lh-h2:      1.125;
+  --text-h3:    2rem;        /* 32px · lh 36/32 = 1.125 */
+  --lh-h3:      1.125;
+  --text-h4:    1.5rem;      /* 24px · lh auto */
+  --lh-h4:      1.4;
+  --text-h5:    1.25rem;     /* 20px · lh auto */
+  --lh-h5:      1.4;
+  --text-h6:    1.125rem;    /* 18px · lh auto */
+  --lh-h6:      1.4;
+  --text-body:  1rem;        /* 16px · lh 20/16 = 1.25 */
+  --lh-body:    1.25;
+  --text-span:  0.8125rem;   /* 13px · lh 16/13 ≈ 1.23 */
+  --lh-span:    1.23;
+  --text-mini:  0.6875rem;   /* 11px · lh auto */
+  --lh-mini:    1.4;
+
+  /* semantic aliases (component styles should prefer these) */
+  --fs-2xs: var(--text-mini);
+  --fs-xs: var(--text-span);
+  --fs-sm: 0.875rem;
+  --fs-md: var(--text-body);
+  --fs-lg: 1.125rem;
+  --fs-xl: var(--text-h5);
+}
+
 *,
 *::before,
 *::after {
@@ -11,13 +45,73 @@ body,
   min-height: 100dvh;
 }
 
+html {
+  /* Global scaling: 1rem = 17px */
+  font-size: 17px;
+}
+
 #root {
   max-width: 100%;
 }
 
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.45;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: var(--lh-h1);
+  font-weight: 700;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: var(--lh-h2);
+  font-weight: 700;
+  margin: 0;
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-h3);
+  line-height: var(--lh-h3);
+  font-weight: 700;
+  margin: 0;
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-h4);
+  line-height: var(--lh-h4);
+  font-weight: 700;
+  margin: 0;
+}
+
+h5 {
+  font-family: var(--font-body);
+  font-size: var(--text-h5);
+  line-height: var(--lh-h5);
+  font-weight: 600;
+  margin: 0;
+}
+
+h6 {
+  font-family: var(--font-body);
+  font-size: var(--text-h6);
+  line-height: var(--lh-h6);
+  font-weight: 600;
+  margin: 0;
+}
+
+p, span, li, label, button, input, select, textarea {
+  font-family: var(--font-body);
 }
 
 code {

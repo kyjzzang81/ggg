@@ -18,7 +18,7 @@
 ## 2. 기후·날씨 지표
 
 ### ggg score · `climate_score`
-목적지 × 기간의 여행 적합도를 0~100으로 표현하는 본 서비스 고유 종합 점수(사용자 대면 표기 **ggg score**, DB·코드 식별자는 `climate_score` 등 기존 이름 유지).
+목적지 × 기간의 여행 적합도를 내부적으로 0~100으로 계산하는 본 서비스 고유 종합 점수(사용자 대면 표기는 **ggg grade**, DB·코드 식별자는 `climate_score` 등 기존 이름 유지).
 - 데이터 출처: `climate_normals` · `monthly_climate` · `best_travel_week` 등
 - 등급: `excellent 80+` / `good 60~79` / `fair 40~59` / `poor 0~39` (`DESIGN-SYSTEM.md` §7-1)
 - 화면: 홈 요약, `/score`, 장소 추천 배지, D-day 상세
@@ -28,6 +28,9 @@
 ggg score를 4등급 라벨로 변환한 값.
 - 값: `"excellent" | "good" | "fair" | "poor"`
 - UI 라벨(한글): `강력 추천 / 추천 / 보통 / 비추천`
+
+### ggg grade
+사용자 화면에서 노출하는 ggg score의 등급형 표현. 숫자 점수(예: 82점)는 직접 노출하지 않고 등급 배지 중심으로 안내한다.
 
 ### TCI (Tourism Climate Index)
 기상청 KMA 관광기후지수. ggg score의 **보조 지표**로 통합 가능 (Phase 1.5+).

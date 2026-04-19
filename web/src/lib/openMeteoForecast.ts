@@ -5,6 +5,8 @@ export type HourlyForecastPoint = {
   temperature: number | null
   weather_code: number | null
   precipitation: number | null
+  wind_speed: number | null
+  humidity: number | null
 }
 
 function num(v: unknown): number | null {
@@ -34,7 +36,7 @@ export async function fetchOpenMeteoHourlyForecast(
   const params = new URLSearchParams({
     latitude: String(lat),
     longitude: String(lon),
-    hourly: ['temperature_2m', 'precipitation', 'weather_code'].join(','),
+    hourly: ['temperature_2m', 'precipitation', 'weather_code', 'wind_speed_10m', 'relative_humidity_2m'].join(','),
     forecast_days: String(forecastDays),
     timezone,
   })
@@ -54,6 +56,8 @@ export async function fetchOpenMeteoHourlyForecast(
   const t = h.temperature_2m ?? []
   const pr = h.precipitation ?? []
   const wc = h.weather_code ?? []
+  const ws = h.wind_speed_10m ?? []
+  const hum = h.relative_humidity_2m ?? []
 
   const out: HourlyForecastPoint[] = []
   for (let i = 0; i < times.length; i++) {
@@ -62,6 +66,8 @@ export async function fetchOpenMeteoHourlyForecast(
       temperature: num(t[i]),
       precipitation: num(pr[i]),
       weather_code: smallInt(wc[i]),
+      wind_speed: num(ws[i]),
+      humidity: num(hum[i]),
     })
   }
   return out

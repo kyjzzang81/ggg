@@ -3,14 +3,14 @@
 }
 
 .page-block h2 {
-  font-size: 1rem;
+  font-size: var(--fs-md);
   margin: 0 0 0.5rem;
   color: #344054;
 }
 
 .page-muted {
   color: #667085;
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
 }
 
 .page-select {
@@ -19,14 +19,14 @@
   padding: 0.5rem 0.65rem;
   border: 1px solid #d0d5dd;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: var(--fs-md);
   background: #fff;
 }
 
 .page-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   background: #fff;
   border: 1px solid #e4e7ec;
   border-radius: 8px;
@@ -52,7 +52,7 @@
   justify-content: center;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -322,351 +322,767 @@
   color: #b42318;
 }
 
+/* ============================================================
+   HOME PAGE  — Figma 디자인 1:1 구현
+   ============================================================ */
 
-/* --- Home mockup style --- */
-.home-topbar {
-  margin-bottom: 0.5rem;
-}
-
-.home-mode {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  flex-wrap: wrap;
-  margin: 0.35rem 0 0.25rem;
-}
-
-.home-mode__label {
-  font-size: 0.78rem;
-  font-weight: 650;
-  color: #344054;
-}
-
-.home-mode__toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.78rem;
-  color: #475467;
-}
-
-.home-topbar__meta {
-  margin-top: 0.35rem;
-  font-size: 0.82rem;
-  color: #667085;
-}
-
-.home-hero {
-  margin: 0.75rem 0 1rem;
-  padding: 1rem;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #e0ecff 0%, #eff8ff 40%, #fff 100%);
-  border: 1px solid #d1e9ff;
-}
-
-.home-hero--sunny {
-  background: linear-gradient(135deg, #ffe8a8 0%, #fff5d6 40%, #fff 100%);
-  border-color: #f7d183;
-}
-
-.home-hero--partly {
-  background: linear-gradient(135deg, #dcecff 0%, #eff5ff 40%, #fff 100%);
-  border-color: #c7ddff;
-}
-
-.home-hero--foggy {
-  background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 40%, #fff 100%);
-  border-color: #d1d5db;
-}
-
-.home-hero--drizzle {
-  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 40%, #fff 100%);
-  border-color: #bfdbfe;
-}
-
-.home-hero--rainy {
-  background: linear-gradient(135deg, #cfe2ff 0%, #e8f0ff 40%, #fff 100%);
-  border-color: #9dc2ff;
-}
-
-.home-hero--snowy {
-  background: linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 40%, #fff 100%);
-  border-color: #cbd5e1;
-}
-
-.home-hero--stormy {
-  background: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 40%, #fff 100%);
-  border-color: #a5b4fc;
-}
-
-.home-hero--windy {
-  background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 40%, #fff 100%);
-  border-color: #a7f3d0;
-}
-
-.home-hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.82rem;
-  color: #175cd3;
-  font-weight: 600;
-}
-
-.home-hero__title {
-  margin: 0.55rem 0 0;
-  font-size: 1.45rem;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
-}
-
-.home-hero__subtitle {
-  margin: 0.35rem 0 0;
-  font-size: 0.86rem;
-  color: #667085;
-}
-
-.home-hero__layerHint {
-  color: #175cd3;
-  font-weight: 600;
-}
-
-.home-hero__meta {
-  margin-top: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.home-hero__temp {
-  font-size: 2.1rem;
-  line-height: 1;
-}
-
-.home-score-chip {
-  display: inline-flex;
-  align-items: center;
-  height: 28px;
-  padding: 0 0.7rem;
-  border-radius: 999px;
-  background: #eff4ff;
-  color: #175cd3;
-  font-size: 0.77rem;
-  font-weight: 650;
-}
-
-.home-stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin-bottom: 0.9rem;
-}
-
-.home-stat {
-  border: 1px solid #e4e7ec;
-  border-radius: 12px;
-  padding: 0.72rem;
+.home-page {
   background: #fff;
+  padding-bottom: 5rem;
+  --home-fs-caption: var(--fs-2xs);
+  --home-fs-body: var(--fs-sm);
+  --home-fs-title: var(--fs-md);
+  --home-fs-section: var(--fs-lg);
 }
 
-.home-stat__label {
+/* ── ggg 로고 도트 (가로 나열) ── */
+.home-ggg-dots {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.home-ggg-dot {
   display: block;
-  font-size: 0.78rem;
-  color: #667085;
+  width: var(--dot, 18px);
+  height: var(--dot, 18px);
+  border-radius: 50%;
+  margin-left: var(--ov, -7px);
+  flex-shrink: 0;
+}
+.home-ggg-dot:first-child {
+  margin-left: 0;
+}
+.home-ggg-dot--green {
+  background: #13ea00;
+}
+.home-ggg-dot--purple {
+  background: #c871fd;
+}
+.home-ggg-dot--blue {
+  background: #5260fe;
 }
 
-.home-stat__value {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 1.18rem;
-  letter-spacing: -0.02em;
-}
-
-.home-stat__sub {
-  display: block;
-  margin-top: 0.28rem;
-  font-size: 0.73rem;
-  color: #98a2b3;
-}
-
-.home-forecast-strip {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.2rem;
-}
-
-.home-forecast-item {
-  min-width: 74px;
-  border: 1px solid #d0d5dd;
-  background: #fff;
-  border-radius: 12px;
-  padding: 0.55rem 0.45rem;
+/* ── gs 추천 배지 (세로 dots + 텍스트 아래) ── */
+.home-gs-score {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 4px;
+  flex-shrink: 0;
+  min-width: 32px;
 }
-
-.home-forecast-item--active {
-  border-color: #84caff;
-  background: #eff8ff;
+.home-gs-score__dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -6px;
 }
-
-.home-forecast-item__day {
-  font-size: 0.72rem;
-  color: #667085;
+.home-gs-score__dot {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin-top: -6px;
+  border: 2px solid #fff;
 }
-
-.home-forecast-item__icon {
-  font-size: 1.1rem;
+.home-gs-score__dot:first-child {
+  margin-top: 0;
 }
-
-.home-forecast-item__temp {
-  font-size: 0.92rem;
+.home-gs-score__label {
+  font-size: 0.62rem;
   font-weight: 700;
+  text-align: center;
+  white-space: pre-line;
+  line-height: 1.15;
 }
 
-.home-forecast-item__tempMin {
-  font-size: 0.75rem;
-  color: #98a2b3;
-}
-
-.home-insight {
-  margin: 0.4rem 0 1rem;
-  border: 1px solid #b2ddff;
-  background: #eff8ff;
-  border-radius: 12px;
-  padding: 0.75rem 0.85rem;
-}
-
-.home-insight__title {
-  font-size: 0.84rem;
-  color: #175cd3;
-}
-
-.home-insight__text {
-  margin: 0.35rem 0 0;
-  color: #175cd3;
-  font-size: 0.82rem;
-  line-height: 1.45;
-}
-
-.home-cards {
-  display: grid;
-  gap: 0.55rem;
-  margin: 0 0 1rem;
-}
-
-.home-card {
-  border: 1px solid #e4e7ec;
-  border-radius: 12px;
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.home-hero {
   background: #fff;
-  padding: 0.7rem 0.8rem;
+  padding: 1rem 1rem 0;
+}
+.home-hero--compact {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  box-shadow: 0 2px 12px rgba(16, 24, 40, 0.07);
 }
 
-.home-card__title {
-  display: block;
-  font-size: 0.84rem;
-}
-
-.home-card__subtitle {
-  margin: 0.25rem 0 0;
-  font-size: 0.78rem;
-  color: #475467;
-}
-
-.home-card__message {
-  margin: 0.3rem 0 0;
-  font-size: 0.8rem;
-  color: #667085;
-}
-
-.home-card--info {
-  background: #eff8ff;
-  border-color: #b2ddff;
-}
-
-.home-card--good {
-  background: #ecfdf3;
-  border-color: #a6f4c5;
-}
-
-.home-card--warn {
-  background: #fffaeb;
-  border-color: #fedf89;
-}
-
-.home-place-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.home-place-item {
+/* 타이틀 행 */
+.home-hero__toprow {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  border: 1px solid #eaecf0;
-  border-radius: 12px;
-  padding: 0.58rem 0.65rem;
-  background: #fff;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
 }
-
-.home-place-item__thumb {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: #eff4ff;
-  display: inline-flex;
+.home-hero__brand {
+  display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.home-place-item__body {
+  gap: 0.5rem;
   min-width: 0;
   flex: 1;
 }
-
-.home-place-item__title {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.home-place-item__desc {
-  margin: 0.2rem 0 0;
-  font-size: 0.76rem;
-  color: #667085;
+.home-hero__msg {
+  font-size: var(--home-fs-title);
+  font-weight: 600;
+  color: #1f2933;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.home-hero__menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.home-hero__menu-btn span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #1f2933;
+  border-radius: 2px;
+}
 
-.home-place-item__score {
+/* 날씨/온도 블록 */
+.home-hero__weather {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+}
+.home-hero__weather-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+.home-hero__weather-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.home-hero__location {
+  margin: 0;
+  font-size: var(--home-fs-body);
+  color: #888;
+}
+.home-hero__weather-right {
+  text-align: right;
+  padding-top: 0.25rem;
+}
+.home-hero__temp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.1rem;
+  justify-content: flex-end;
+}
+.home-hero__temp {
+  font-size: 4rem;
   font-weight: 700;
-  font-size: 0.84rem;
-  color: #175cd3;
-  background: #eff8ff;
-  border-radius: 999px;
-  height: 26px;
-  min-width: 36px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #1f2933;
+}
+.home-hero__temp-unit {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #888;
+  margin-top: 0.6rem;
+}
+.home-hero__temp-range {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  font-size: var(--home-fs-body);
+  color: #888;
+  margin-top: 0.15rem;
+}
+
+/* ── insight 카드 ── */
+.home-insight {
+  background: #5260fe;
+  border-radius: 18px 18px 14px 14px;
+  padding: 1rem 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.home-hero--compact .home-insight {
+  border-radius: 0 0 14px 14px;
+  padding: 0.65rem 1rem;
+}
+
+.home-insight__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.home-insight__badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0 0.45rem;
+  height: 22px;
+  padding: 0 0.6rem;
+  background: #13ea00;
+  color: #ff8f2d;
+  font-size: var(--home-fs-caption);
+  font-weight: 700;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
 }
 
-.prod-map-hint {
-  margin: 0 0 0.65rem;
-  font-size: 0.8rem;
+/* iOS 토글 스위치 */
+.home-insight__toggle {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  border-radius: 13px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.home-insight__toggle--on {
+  background: #ff8f2d;
+}
+.home-insight__toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.home-insight__toggle--on .home-insight__toggle-thumb {
+  transform: translateX(18px);
 }
 
-.naver-nearby-map {
-  width: 100%;
-  min-height: 260px;
+.home-insight__text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: var(--home-fs-body);
+  line-height: 1.55;
+}
+.home-insight__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.home-insight__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 0.6rem;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: var(--home-fs-body);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════
+   섹션 공통
+══════════════════════════════════════ */
+.home-section {
+  padding: 1.25rem 1rem 0;
+}
+.home-section__title {
+  margin: 0 0 0.75rem;
+  font-size: var(--home-fs-section);
+  font-weight: 700;
+  color: #1f2933;
+  letter-spacing: -0.01em;
+}
+
+/* ══════════════════════════════════════
+   오늘 날씨 예상 — 2×4 그리드
+══════════════════════════════════════ */
+.home-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.45rem;
+}
+.home-metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.65rem 0.5rem 0.55rem;
   border-radius: 12px;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+.home-metric-card--active {
+  filter: brightness(0.92);
+  outline: 2px solid rgba(82, 96, 254, 0.4);
+}
+.home-metric-card--blue {
+  background: #ebedff;
+}
+.home-metric-card--yellow {
+  background: #f8f5e0;
+}
+.home-metric-card--purple {
+  background: #f6e7ff;
+}
+.home-metric-card--green {
+  background: #def3dc;
+}
+
+.home-metric-card__label {
+  font-size: var(--home-fs-caption);
+  color: #555;
+  line-height: 1.2;
+  font-weight: 500;
+}
+.home-metric-card__val {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1rem;
+  flex-wrap: wrap;
+}
+.home-metric-card__val strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2933;
+  letter-spacing: -0.02em;
+}
+.home-metric-card__val span {
+  font-size: var(--home-fs-caption);
+  color: #888;
+}
+
+/* 인라인 지표 상세 */
+.home-metric-detail {
+  margin-top: 0.65rem;
+  background: #5260fe;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.home-metric-detail__title {
+  font-size: var(--home-fs-title);
+  color: #fff;
+  font-weight: 700;
+}
+.home-metric-detail__text {
+  margin: 0;
+  font-size: var(--home-fs-body);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+}
+.home-metric-detail__close {
+  align-self: flex-end;
+  height: 28px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: var(--home-fs-body);
+  cursor: pointer;
+  margin-top: 0.15rem;
+}
+
+/* ══════════════════════════════════════
+   지금 가기 좋은 곳
+══════════════════════════════════════ */
+.home-place-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.home-place-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+}
+.home-place-card--gorgeous {
+  background: #ebedff;
+}
+.home-place-card--great {
+  background: #f6e7ff;
+}
+.home-place-card--good {
+  background: #def3dc;
+}
+
+.home-place-card__body {
+  min-width: 0;
+  flex: 1;
+}
+.home-place-card__name {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2933;
+}
+.home-place-card__desc {
+  margin: 0 0 0.15rem;
+  font-size: 0.76rem;
+  color: #444;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+.home-place-card__dist {
+  margin: 0;
+  font-size: 0.7rem;
+  color: #888;
+}
+
+/* ══════════════════════════════════════
+   5일 예보
+══════════════════════════════════════ */
+.home-forecast-summary {
+  background: #5260fe;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.55rem;
+}
+.home-forecast-summary__text {
+  margin: 0;
+  color: #fff;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.home-forecast-table {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e8e9ff;
+  background: #fff;
+}
+
+/* 공통 행 */
+.home-forecast-row {
+  display: grid;
+  grid-template-columns: 56px repeat(5, 1fr);
+  align-items: center;
+  padding: 0.42rem 0.5rem;
+  border-bottom: 1px solid rgba(82, 96, 254, 0.07);
+  background: #fff;
+}
+.home-forecast-row:last-child {
+  border-bottom: none;
+}
+
+.home-forecast-row--head {
+  background: #f9fafb;
+}
+.home-forecast-row--blue {
+  background: #ebedff;
+}
+.home-forecast-row--purple {
+  background: #f6e7ff;
+}
+
+/* 그룹 (배경색 공유) */
+.home-forecast-group {
+}
+.home-forecast-group--blue .home-forecast-row {
+  background: #ebedff;
+}
+.home-forecast-group--yellow .home-forecast-row {
+  background: #f8f5e0;
+}
+.home-forecast-group--green .home-forecast-row {
+  background: #def3dc;
+}
+
+.home-forecast-label {
+  font-size: 0.66rem;
+  color: #555;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 1.2;
+}
+.home-forecast-label--max {
+  color: #5260fe;
+}
+.home-forecast-label--min {
+  color: #ff8f2d;
+}
+.home-forecast-label--feels {
+  color: #c871fd;
+}
+
+.home-forecast-day {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1f2933;
+  text-align: center;
+}
+.home-forecast-day.--sat {
+  color: #5260fe;
+}
+.home-forecast-day.--sun {
+  color: #ff5b5b;
+}
+
+.home-forecast-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  justify-self: center;
+}
+
+.home-forecast-val {
+  font-size: 0.76rem;
+  color: #1f2933;
+  text-align: center;
+}
+.home-forecast-val--max {
+  color: #5260fe;
+  font-weight: 700;
+}
+.home-forecast-val--min {
+  color: #ff8f2d;
+  font-weight: 700;
+}
+.home-forecast-val--alert {
+  color: #ff5b5b;
+  font-weight: 700;
+}
+.home-forecast-val--zero {
+  color: #5260fe;
+}
+
+/* 기온 그래프 */
+.home-forecast-graph {
+  padding: 0.35rem 0.5rem 0.5rem;
+  background: #ebedff;
+}
+.home-forecast-graph svg {
+  display: block;
+}
+.home-forecast-graph__legend {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.6rem;
+  margin-top: 0.2rem;
+  color: #555;
+}
+
+/* ══════════════════════════════════════
+   home-cards (오늘을 위한 플랜)
+══════════════════════════════════════ */
+.home-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.home-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  text-decoration: none;
+  border: none;
+}
+.home-card--blue {
+  background: #ebedff;
+}
+.home-card--green {
+  background: #def3dc;
+}
+.home-card--purple {
+  background: #f6e7ff;
+}
+
+.home-card__emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.home-card__body {
+  min-width: 0;
+  flex: 1;
+}
+.home-card__title {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1f2933;
+  margin-bottom: 0.18rem;
+}
+.home-card__subtitle {
+  margin: 0;
+  font-size: 0.74rem;
+  color: #555;
+  line-height: 1.4;
+}
+.home-card__cta {
+  font-size: 1.1rem;
+  color: #5260fe;
+  flex-shrink: 0;
+}
+
+/* ── ggg grade 배너 ── */
+.home-grade-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  margin: 1rem 1rem 0;
+  background: #f9fafb;
+  border-radius: 14px;
+  border: 1px solid #ebedff;
+}
+.home-grade-banner__text {
+  flex: 1;
+  font-size: 0.82rem;
+  color: #666;
+}
+.home-grade-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+.home-grade-chip--gorgeous {
+  background: #ebedff;
+  color: #5260fe;
+}
+.home-grade-chip--great {
+  background: #f6e7ff;
+  color: #c871fd;
+}
+.home-grade-chip--good {
+  background: #def3dc;
+  color: #067647;
+}
+.home-grade-chip--meh {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+/* ── btn-assist (고정 원형) ── */
+.home-assist-btn {
+  position: fixed;
+  left: 16px;
+  bottom: calc(72px + env(safe-area-inset-bottom));
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #5260fe;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(82, 96, 254, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 바텀시트 ── */
+.home-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+.home-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.4);
+  border: none;
+  width: 100%;
+}
+.home-sheet__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 1rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 72dvh;
+  overflow-y: auto;
+}
+.home-sheet__handle {
+  width: 36px;
+  height: 4px;
+  background: #e4e7ec;
+  border-radius: 999px;
+  align-self: center;
+  margin-bottom: 0.15rem;
+}
+.home-sheet__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2933;
+}
+.home-sheet__text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #475467;
+  line-height: 1.55;
+}
+.home-sheet__guide-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.home-sheet__guide-list li {
+  font-size: 0.82rem;
+  color: #475467;
+  line-height: 1.45;
+}
+.home-sheet__guide-list strong {
+  color: #1f2933;
+}
+.home-sheet__close {
+  width: 100%;
+  height: 44px;
   border: 1px solid #e4e7ec;
-  background: #f2f4f7;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #344054;
+  margin-top: 0.15rem;
+}
+
+/* ── 레거시 호환 ── */
+.home-topbar {
+  margin-bottom: 0.5rem;
+}
+.home-topbar__meta {
+  font-size: 0.82rem;
+  color: #667085;
 }

@@ -79,20 +79,21 @@ interface HeroCardProps {
 
 ## 2-2. `GggScoreBadge`
 
-점수 + 등급 + 보조 라벨 표시.
+등급 + 보조 라벨 표시(홈에서는 숫자 점수 비노출 기본).
 
 ```ts
 interface GggScoreBadgeProps {
-  score: number; // 0~100
+  score?: number; // 내부 계산/보조화면에서만 사용 (홈 기본 비노출)
   grade: ScoreGrade;
   label?: string; // 예: "강력 추천"
   size?: "sm" | "md" | "lg";
   showIcon?: boolean;
+  showNumericScore?: boolean; // default false
 }
 ```
 
 - 규칙
-  - 점수 반올림 표기
+  - 숫자 노출이 필요한 화면에서만 점수 반올림 표기
   - 등급 텍스트 동시 표시 (색상만 사용 금지)
 
 ## 2-3. `StatCard`
@@ -124,6 +125,7 @@ interface ForecastItem {
   weatherCode: number;
   tempMin: number;
   tempMax: number;
+  tempFeels?: number;
   isHighlighted?: boolean; // D-day 등
 }
 
@@ -132,8 +134,13 @@ interface ForecastStripProps {
   onSelectDate?: (date: string) => void;
   selectedDate?: string;
   state?: AsyncState;
+  showGrassGraph?: boolean; // 최고/최저/체감 3줄 미니 그래프
 }
 ```
+
+- 그래프 규칙
+  - `showGrassGraph=true`일 때 최고/최저/체감 3줄을 카드 내부에 렌더링
+  - 색상: 최고(빨강), 최저(파랑), 체감(초록)
 
 ## 2-5. `MonthlyBarChart`
 

@@ -18,19 +18,19 @@
 
 ## 2-1. Color
 
-### Brand
+### Brand (Figma 기준 확정값)
 
-- `brand.blue`: `#5260FE`
-- `brand.blue-light`: `#EEF0FF`
-- `brand.blue-mid`: `#C4C8FF`
-- `brand.blue-dark`: `#3340CC`
-- `brand.green`: `#BEFBB6`
-- `brand.green-dark`: `#2C9E1E`
-- `brand.green-light`: `#EDFCEB`
-- `brand.orange`: `#FE7C52`
-- `brand.orange-light`: `#FFF0EB`
-- `brand.purple`: `#C871FD`
-- `brand.purple-light`: `#F7EBFF`
+| 토큰 | HEX | 용도 |
+| ---- | --- | ---- |
+| `brand.blue` | `#5260FE` | Primary, insight 카드 배경, 예보 summary |
+| `brand.blue-tint` | `#EBEDFF` | 체감기온·바람 카드 배경, 기온 섹션 배경 |
+| `brand.green` | `#13EA00` | ggg 로고 첫 번째 도트, insight 배지 배경 |
+| `brand.purple` | `#C871FD` | ggg 로고 두 번째 도트, gs-great 등급 색 |
+| `brand.orange` | `#FF8F2D` | insight 배지 텍스트, 최저기온 그래프 |
+| `brand.red` | `#FF5B5B` | 일요일 텍스트, 강수확률 경고값 |
+| `brand.yellow-tint` | `#F8F5E0` | 강수확률·습도·강수량 카드 배경 |
+| `brand.purple-tint` | `#F6E7FF` | 자외선 카드 배경, gs-great 카드 배경 |
+| `brand.green-tint` | `#DEF3DC` | 미세먼지 카드 배경, gs-good 카드 배경 |
 
 ### Gray
 
@@ -42,18 +42,30 @@
 - `gray.700`: `#344054`
 - `gray.900`: `#101828`
 
-### Semantic (Score Grade)
+### Semantic (ggg Grade)
 
-- `score.excellent` (강력 추천): `#2C9E1E`
-- `score.good` (추천): `#5260FE`
-- `score.fair` (보통): `#FE7C52`
-- `score.poor` (비추천): `#DC2626`
+| 등급 | 키 | 색 | 설명 |
+| ---- | -- | -- | ---- |
+| 강력 추천 | `gorgeous` | `#5260FE` (blue) | 3-dot logo (green+purple+blue) |
+| 추천 | `great` | `#C871FD` (purple) | 2-dot logo (green+purple) |
+| 보통 | `good` | `#13EA00` (green) | 1-dot logo (green) |
+| 비추천 | `meh` | `#888` (gray) | — |
 
-> 점수 색은 배지/칩/캘린더 셀 배경에 사용하고, 텍스트 라벨을 항상 같이 제공한다.
+> 홈/핵심 진입 영역에서는 숫자 점수 대신 **ggg grade 배지**를 우선 사용한다. 텍스트 라벨을 항상 같이 제공한다.
+
+### 날씨 지표 카드 배경색
+
+| 지표 | 배경 토큰 | HEX |
+| ---- | --------- | --- |
+| 체감기온, 바람 | `brand.blue-tint` | `#EBEDFF` |
+| 강수확률, 습도, 강수량 | `brand.yellow-tint` | `#F8F5E0` |
+| 자외선 | `brand.purple-tint` | `#F6E7FF` |
+| 미세먼지, 초미세먼지 | `brand.green-tint` | `#DEF3DC` |
 
 ## 2-2. Typography
 
 - Font family: `Plus Jakarta Sans`, `sans-serif`
+- Runtime root scale: `html { font-size: 17px }` (웹앱 현재 기준, `1rem = 17px`)
 - 기본 규칙
   - Heading: 700
   - Section title: 600
@@ -68,6 +80,10 @@
 - Body-L: 16/24
 - Body-M: 14/22
 - Caption: 12/18
+
+실구현 토큰(웹 코드):
+- `--fs-2xs`, `--fs-xs`, `--fs-sm`, `--fs-md`, `--fs-lg`, `--fs-xl`
+- 공통 컴포넌트/레이아웃은 위 토큰 우선 사용, 페이지 개별 px 하드코딩은 최소화
 
 ## 2-3. Radius
 
@@ -179,6 +195,7 @@
 - 고정 하단 탭: `홈`, `스코어`, `장소`, `주변`, `D-day`
 - 사이드 패널: `모드 설정`, `숨은 황금 시즌`, `도시 비교`, `소셜 임팩트`, `마이페이지`
 - 연인/가족은 화면 분기가 아니라 콘텐츠 레이어 토글이다.
+- 연인/가족 토글 UI는 홈 본문에 두지 않고, **사이드 패널 `모드 설정` 섹션**에서만 제어한다.
 
 ---
 
@@ -215,9 +232,16 @@
 
 ## 7-2. 표현 규칙
 
-- 숫자 + 라벨 동시 표시 (색상 단독 사용 금지)
+- 홈에서는 숫자 점수 노출 없이 등급 라벨 중심(`강력 추천/추천/보통/비추천`)으로 표시
 - 배지 텍스트 우선, 색상은 보조
 - 동일 점수라도 화면 맥락별 라벨은 동일 유지
+
+## 7-4. 홈 5일 예보 그래프(그래스 스타일)
+
+- 항목: 최고기온 / 최저기온 / 체감기온 3개
+- 표현: 일자 카드 내부 미니 가로 막대 3줄(빨강/파랑/초록)
+- 길이 기준: 동일 화면의 5일 구간에서 상대 길이 비교 가능해야 함
+- 최소 길이 보장: 데이터가 낮아도 시각적 인지 가능하도록 10~12% 최소폭 유지
 
 ## 7-3. Calendar 표현 원칙
 
@@ -273,6 +297,11 @@
 - 테마 매핑: `src/constants/weather-themes.ts`
 - 모드 상태: `src/store/modeStore.ts`
 - 점수 계산: `best_travel_week`, `activity_weather_score`, `climate_normals`
+
+현 상태 구현 기준(2026-04):
+- 스타일 엔진: 전역 CSS(`src/index.css`) + 화면 CSS(`src/pages/pages.css`) + 레이아웃 CSS
+- 우선 원칙: **토큰 우선(token-first CSS)** / rem 기반 / 반복 스타일 변수화
+- 점진 이관: 신규 UI는 토큰 기반으로 작성하고, 기존 하드코딩 스타일은 리팩터링 단계에서 순차 치환
 
 ---
 
