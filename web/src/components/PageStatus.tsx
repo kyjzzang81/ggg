@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { PAGE_STATUS_COPY } from '../ui/pageStatus'
+import { Preloader } from './Preloader'
 
 type Variant = 'loading' | 'empty' | 'error'
 
@@ -18,10 +19,18 @@ export function PageStatus({
   message?: ReactNode
   className?: string
 }) {
+  if (variant === 'loading') {
+    return (
+      <Preloader
+        overlay={false}
+        message={typeof message === 'string' ? message : PAGE_STATUS_COPY.loading}
+        className={className}
+      />
+    )
+  }
+
   const text =
-    variant === 'loading'
-      ? (message ?? PAGE_STATUS_COPY.loading)
-      : variant === 'empty'
+    variant === 'empty'
         ? (message ?? PAGE_STATUS_COPY.empty)
         : (message ?? PAGE_STATUS_COPY.error)
 

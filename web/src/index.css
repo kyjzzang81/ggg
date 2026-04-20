@@ -3,33 +3,120 @@
   --font-display: 'Wanted Sans', sans-serif;   /* h1, h2 */
   --font-body:    'Pretendard', system-ui, -apple-system, sans-serif; /* 나머지 전부 */
 
-  /* Figma 타이포 스케일 (px → rem) */
-  --text-h1:    4rem;        /* 64px · lh 64/64 = 1   */
-  --lh-h1:      1;
-  --text-h2:    3rem;        /* 48px · lh 54/48 = 1.125 */
-  --lh-h2:      1.125;
-  --text-h3:    2rem;        /* 32px · lh 36/32 = 1.125 */
-  --lh-h3:      1.125;
-  --text-h4:    1.5rem;      /* 24px · lh auto */
-  --lh-h4:      1.4;
-  --text-h5:    1.25rem;     /* 20px · lh auto */
-  --lh-h5:      1.4;
-  --text-h6:    1.125rem;    /* 18px · lh auto */
-  --lh-h6:      1.4;
-  --text-body:  1rem;        /* 16px · lh 20/16 = 1.25 */
-  --lh-body:    1.25;
-  --text-span:  0.8125rem;   /* 13px · lh 16/13 ≈ 1.23 */
-  --lh-span:    1.23;
-  --text-mini:  0.6875rem;   /* 11px · lh auto */
-  --lh-mini:    1.4;
+  /* Color style tokens (Figma) */
+  --color-primary: #4a6cf7;
+  --color-secondary: #c67dff;
+  --color-third: #27e600;
+  --color-accent: #ff972f;
+  --color-tag1: #f2efff;
+  --color-tag2: #faedff;
+  --color-tag3: #e8fbe7;
+  --color-tag4: #f7f4df;
+  --color-negative: #ff5a5a;
+  --color-white: #ffffff;
+  --color-lightgrey: #f5f7fb;
+  --color-grey300: #d6d6d6;
+  --color-grey: #8b8b8b;
+  --color-black: #111827;
 
-  /* semantic aliases (component styles should prefer these) */
-  --fs-2xs: var(--text-mini);
-  --fs-xs: var(--text-span);
-  --fs-sm: 0.875rem;
-  --fs-md: var(--text-body);
-  --fs-lg: 1.125rem;
-  --fs-xl: var(--text-h5);
+  /* Text style tokens (Figma) */
+  --text-card-title-active: 28px;
+  --text-card-title-unactive: 16px;
+  --text-h1: 64px;
+  --lh-h1: 1;
+  --text-h2: 48px;
+  --lh-h2: 1.125;
+  --text-h3: 32px;
+  --lh-h3: 1.125;
+  --text-h4: 24px;
+  --lh-h4: 1.3;
+  --text-h5: 20px;
+  --lh-h5: 1.3;
+  --text-h6: 18px;
+  --lh-h6: 1.3;
+  --text-body: 16px;
+  --lh-body: 1.25;
+  --text-span: 13px;
+  --lh-span: 1.23;
+  --text-mini: 11px;
+  --lh-mini: 1.3;
+
+  /* semantic aliases (fixed scale, 1rem = 16px) */
+  --fs-2xs: 0.6875rem; /* 11px */
+  --fs-xs: 0.8125rem;  /* 13px */
+  --fs-sm: 0.875rem;   /* 14px */
+  --fs-md: 1rem;       /* 16px */
+  --fs-lg: 1.125rem;   /* 18px */
+  --fs-xl: 1.25rem;    /* 20px */
+}
+
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  background: rgba(245, 247, 251, 0.56);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.preloader-inline {
+  margin: 0.35rem 0 0.85rem;
+  display: grid;
+  place-items: center;
+}
+
+.preloader-card {
+  display: grid;
+  place-items: center;
+  gap: 0.3rem;
+  min-width: 112px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.preloader-anim-wrap {
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+}
+
+.preloader-anim {
+  width: 100%;
+  height: 100%;
+}
+
+.preloader-fallback {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--color-primary) 24%, #fff);
+  border-top-color: var(--color-primary);
+  animation: preloaderSpin 0.8s linear infinite;
+}
+
+.preloader-text {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+@keyframes preloaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-fallback {
+    animation: none;
+  }
 }
 
 *,
@@ -46,8 +133,8 @@ body,
 }
 
 html {
-  /* Global scaling: 1rem = 17px */
-  font-size: 17px;
+  /* Base scale: 1rem = 16px */
+  font-size: 16px;
 }
 
 #root {

@@ -18,29 +18,27 @@
 
 ## 2-1. Color
 
-### Brand (Figma 기준 확정값)
+### Brand (첨부 토큰 기준 갱신)
 
 | 토큰 | HEX | 용도 |
 | ---- | --- | ---- |
-| `brand.blue` | `#5260FE` | Primary, insight 카드 배경, 예보 summary |
-| `brand.blue-tint` | `#EBEDFF` | 체감기온·바람 카드 배경, 기온 섹션 배경 |
-| `brand.green` | `#13EA00` | ggg 로고 첫 번째 도트, insight 배지 배경 |
-| `brand.purple` | `#C871FD` | ggg 로고 두 번째 도트, gs-great 등급 색 |
-| `brand.orange` | `#FF8F2D` | insight 배지 텍스트, 최저기온 그래프 |
-| `brand.red` | `#FF5B5B` | 일요일 텍스트, 강수확률 경고값 |
-| `brand.yellow-tint` | `#F8F5E0` | 강수확률·습도·강수량 카드 배경 |
-| `brand.purple-tint` | `#F6E7FF` | 자외선 카드 배경, gs-great 카드 배경 |
-| `brand.green-tint` | `#DEF3DC` | 미세먼지 카드 배경, gs-good 카드 배경 |
+| `color.primary` | `#4A6CF7` | 기본 CTA, 주요 강조 |
+| `color.secondary` | `#C67DFF` | 보조 강조, 레이어 포인트 |
+| `color.third` | `#27E600` | 긍정 상태, 서브 하이라이트 |
+| `color.accent` | `#FF972F` | 보조 액센트 |
+| `color.negative` | `#FF5A5A` | 오류/주의/비추천 |
+| `color.tag1` | `#F2EFFF` | 태그 배경 1 |
+| `color.tag2` | `#FAEDFF` | 태그 배경 2 |
+| `color.tag3` | `#E8FBE7` | 태그 배경 3 |
+| `color.tag4` | `#F7F4DF` | 태그 배경 4 |
 
-### Gray
+### Neutral
 
-- `gray.100`: `#F2F4F7`
-- `gray.200`: `#E4E7EC`
-- `gray.300`: `#D0D5DD`
-- `gray.400`: `#98A2B3`
-- `gray.500`: `#667085`
-- `gray.700`: `#344054`
-- `gray.900`: `#101828`
+- `color.white`: `#FFFFFF`
+- `color.lightgrey`: `#F5F7FB`
+- `color.grey300`: `#D6D6D6`
+- `color.grey`: `#8B8B8B`
+- `color.black`: `#111827`
 
 ### Semantic (ggg Grade)
 
@@ -57,33 +55,40 @@
 
 | 지표 | 배경 토큰 | HEX |
 | ---- | --------- | --- |
-| 체감기온, 바람 | `brand.blue-tint` | `#EBEDFF` |
-| 강수확률, 습도, 강수량 | `brand.yellow-tint` | `#F8F5E0` |
-| 자외선 | `brand.purple-tint` | `#F6E7FF` |
-| 미세먼지, 초미세먼지 | `brand.green-tint` | `#DEF3DC` |
+| 체감기온, 바람 | `color.tag1` | `#F2EFFF` |
+| 강수확률, 습도, 강수량 | `color.tag4` | `#F7F4DF` |
+| 자외선 | `color.tag2` | `#FAEDFF` |
+| 미세먼지, 초미세먼지 | `color.tag3` | `#E8FBE7` |
 
 ## 2-2. Typography
 
-- Font family: `Plus Jakarta Sans`, `sans-serif`
-- Runtime root scale: `html { font-size: 17px }` (웹앱 현재 기준, `1rem = 17px`)
+- Font family: `Pretendard` (body) + `Wanted Sans` (display)
 - 기본 규칙
   - Heading: 700
-  - Section title: 600
-  - Body: 400/500
-  - Metric number: 700
+  - Body: 400~500
+  - 숫자/지표: 600~700
 
-추천 타입 스케일:
-- Display: 32/40
-- H1: 28/36
-- H2: 24/32
-- H3: 20/28
-- Body-L: 16/24
-- Body-M: 14/22
-- Caption: 12/18
+첨부 기준 텍스트 토큰:
+
+| 텍스트 스타일 | 크기/줄간격 |
+|---|---|
+| `card-title-active` | `28 / Auto` |
+| `card-title-unactive` | `16 / Auto` |
+| `h1` | `64 / 64` |
+| `h2` | `48 / 54` |
+| `h3` | `32 / 36` |
+| `h4` | `24 / Auto` |
+| `h5` | `20 / Auto` |
+| `h6` | `18 / Auto` |
+| `body` | `16 / 20` |
+| `span` | `13 / 16` |
+| `span-min` | `11 / Auto` |
 
 실구현 토큰(웹 코드):
-- `--fs-2xs`, `--fs-xs`, `--fs-sm`, `--fs-md`, `--fs-lg`, `--fs-xl`
-- 공통 컴포넌트/레이아웃은 위 토큰 우선 사용, 페이지 개별 px 하드코딩은 최소화
+- `--text-card-title-active`
+- `--text-card-title-unactive`
+- `--text-h1` ~ `--text-h6`
+- `--text-body`, `--text-span`, `--text-mini`
 
 ## 2-3. Radius
 

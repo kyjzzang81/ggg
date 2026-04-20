@@ -35,16 +35,18 @@
   flex: 1;
   text-align: center;
   font-size: var(--fs-2xs);
-  font-weight: 600;
+  font-weight: 500;
   color: #667085;
   text-decoration: none;
-  padding: 0.35rem 0.15rem;
-  border-radius: 8px;
+  padding: 0.4rem 0.15rem;
+  border-radius: 10px;
+  transition: color 0.16s ease, background-color 0.16s ease, font-weight 0.16s ease;
 }
 
 .shell__tab--active {
-  color: #5260FE;
-  background: #EBEDFF;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 14%, #fff);
+  font-weight: 700;
 }
 
 /* ── 사이드바 드로어 ── */
