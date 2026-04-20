@@ -24,6 +24,16 @@
 - 입력: `city_id`, 날짜 범위(또는 좌표 + `forecast_days`)
 - 출력: 시간별 날씨 지표(`temperature`, `weather_code`, `precipitation` 등)
 
+## 2-1-1. 5일 표 보조 지표(자외선/대기질)
+
+- 소스: Open-Meteo Air Quality API (클라이언트 직접 호출)
+- 입력: `latitude`, `longitude`, `forecast_days=5`, `hourly=pm2_5,uv_index`
+- 집계 규칙(일자별):
+  - `uv_index`: 일최대값
+  - `pm2_5`: 일평균값
+  - `pm10`: `pm2_5 * 1.5` 환산
+- 출력: 5일 테이블 행 렌더링용 일자별 수치 맵 (`YYYY-MM-DD` 키)
+
 ## 2-2. 빈도 인사이트
 
 - 소스: `climate_frequency`
@@ -73,7 +83,7 @@
 
 - 소스 우선순위:
   1) `nearby_places`
-  2) TourAPI 실시간 호출
+  2) `nearby-sync` Edge Function 호출로 Naver Local Search 결과 캐시 적재 후 재조회
 - 입력:
   - 좌표/도시
   - 카테고리, 거리

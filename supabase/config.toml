@@ -375,6 +375,12 @@ verify_jwt = false
 [functions.pioneer-ensure]
 verify_jwt = false
 
+[functions.nearby-sync]
+verify_jwt = false
+
+[functions.weather-cache]
+verify_jwt = false
+
 [analytics]
 enabled = true
 port = 54327

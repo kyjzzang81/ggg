@@ -1,12 +1,14 @@
 /* ── 폰트 패밀리 변수 ── */
 :root {
-  --font-display: 'Wanted Sans', sans-serif;   /* h1, h2 */
-  --font-body:    'Pretendard', system-ui, -apple-system, sans-serif; /* 나머지 전부 */
+  --font-display: "Wanted Sans", sans-serif; /* h1, h2 */
+  --font-body:
+    "Pretendard", system-ui, -apple-system, sans-serif; /* 나머지 전부 */
 
   /* Color style tokens (Figma) */
   --color-primary: #4a6cf7;
   --color-secondary: #c67dff;
   --color-third: #27e600;
+  --color-success: #067647;
   --color-accent: #ff972f;
   --color-tag1: #f2efff;
   --color-tag2: #faedff;
@@ -18,6 +20,16 @@
   --color-grey300: #d6d6d6;
   --color-grey: #8b8b8b;
   --color-black: #111827;
+  --color-text-strong: #1f2933;
+  --color-text-default: #111827;
+  --color-text-muted: #667085;
+  --color-text-subtle: #475467;
+  --color-border-subtle: #e4e7ec;
+  --color-border-muted: #ececef;
+  --color-surface-base: #ffffff;
+  --color-surface-muted: #f4f5f7;
+  --color-surface-soft: #f7f7f8;
+  --color-surface-label: #f0f1f3;
 
   /* Text style tokens (Figma) */
   --text-card-title-active: 28px;
@@ -43,11 +55,11 @@
 
   /* semantic aliases (fixed scale, 1rem = 16px) */
   --fs-2xs: 0.6875rem; /* 11px */
-  --fs-xs: 0.8125rem;  /* 13px */
-  --fs-sm: 0.875rem;   /* 14px */
-  --fs-md: 1rem;       /* 16px */
-  --fs-lg: 1.125rem;   /* 18px */
-  --fs-xl: 1.25rem;    /* 20px */
+  --fs-xs: 0.8125rem; /* 13px */
+  --fs-sm: 0.875rem; /* 14px */
+  --fs-md: 1rem; /* 16px */
+  --fs-lg: 1.125rem; /* 18px */
+  --fs-xl: 1.25rem; /* 20px */
 }
 
 .preloader-overlay {
@@ -197,7 +209,14 @@ h6 {
   margin: 0;
 }
 
-p, span, li, label, button, input, select, textarea {
+p,
+span,
+li,
+label,
+button,
+input,
+select,
+textarea {
   font-family: var(--font-body);
 }
 

@@ -125,7 +125,9 @@ interface ForecastItem {
   weatherCode: number;
   tempMin: number;
   tempMax: number;
-  tempFeels?: number;
+  uvIndex?: number | null;   // 일최대
+  pm25?: number | null;      // 일평균
+  pm10?: number | null;      // PM2.5 기반 환산
   isHighlighted?: boolean; // D-day 등
 }
 
@@ -134,13 +136,17 @@ interface ForecastStripProps {
   onSelectDate?: (date: string) => void;
   selectedDate?: string;
   state?: AsyncState;
-  showGrassGraph?: boolean; // 최고/최저/체감 3줄 미니 그래프
+  showOverlayGraph?: boolean; // 최고기온 배경 면+라인 오버레이
+  showLabelUnits?: boolean;   // 좌측 라벨 하단 단위 caption
 }
 ```
 
 - 그래프 규칙
-  - `showGrassGraph=true`일 때 최고/최저/체감 3줄을 카드 내부에 렌더링
-  - 색상: 최고(빨강), 최저(파랑), 체감(초록)
+  - `showOverlayGraph=true`일 때 최고기온 영역에 면+라인 그래프를 배경으로 렌더링
+  - 최저기온 및 기타 지표는 숫자 행으로 유지해 정보 과밀을 방지
+- 단위 표기 규칙
+  - `showLabelUnits=true`일 때 라벨 아래 caption 단위를 항상 노출
+  - 단위는 `%`, `mm`, `km/h`, `UV index`, `ug/m3` 등 지표별 고정 맵으로 관리
 
 ## 2-5. `MonthlyBarChart`
 

@@ -40,6 +40,24 @@
 - `color.grey`: `#8B8B8B`
 - `color.black`: `#111827`
 
+### Semantic alias (runtime CSS tokens)
+
+토큰 우선 리팩터링 단계에서 재사용되는 semantic alias:
+
+| CSS Token | 값 | 용도 |
+|---|---|---|
+| `--color-text-strong` | `#1F2933` | 핵심 제목/숫자 값 |
+| `--color-text-default` | `#344054` | 기본 본문 텍스트 |
+| `--color-text-muted` | `#667085` | 보조 텍스트 |
+| `--color-text-subtle` | `#475467` | 설명/상태 텍스트 |
+| `--color-border-subtle` | `#E4E7EC` | 기본 경계선 |
+| `--color-border-muted` | `#ECECEF` | 옅은 분리선 |
+| `--color-surface-base` | `#FFFFFF` | 기본 표면 |
+| `--color-surface-muted` | `#F4F5F7` | 중립 강조 배경 |
+| `--color-surface-soft` | `#F7F7F8` | 카드/테이블 행 배경 |
+| `--color-surface-label` | `#F0F1F3` | 라벨 셀 배경 |
+| `--color-success` | `#067647` | 성공 상태 텍스트/뱃지 |
+
 ### Semantic (ggg Grade)
 
 | 등급 | 키 | 색 | 설명 |
@@ -89,6 +107,7 @@
 - `--text-card-title-unactive`
 - `--text-h1` ~ `--text-h6`
 - `--text-body`, `--text-span`, `--text-mini`
+- semantic size alias: `--fs-2xs`, `--fs-xs`, `--fs-sm`, `--fs-md`, `--fs-lg`, `--fs-xl`
 
 ## 2-3. Radius
 
@@ -243,10 +262,12 @@
 
 ## 7-4. 홈 5일 예보 그래프(그래스 스타일)
 
-- 항목: 최고기온 / 최저기온 / 체감기온 3개
-- 표현: 일자 카드 내부 미니 가로 막대 3줄(빨강/파랑/초록)
-- 길이 기준: 동일 화면의 5일 구간에서 상대 길이 비교 가능해야 함
-- 최소 길이 보장: 데이터가 낮아도 시각적 인지 가능하도록 10~12% 최소폭 유지
+- 레이아웃: 좌측 라벨 컬럼 + 5일 데이터 컬럼의 테이블 구조
+- 라벨 규칙: 라벨 본문 아래에 단위 caption을 함께 표기
+  - 예: `최고기온/°C`, `자외선/UV index`, `강수량/mm`, `미세먼지/ug/m3`
+- 그래프 규칙: 최고기온 행 구간에 면+라인 오버레이 그래프를 배경으로 제공
+- 수치 규칙: 최저기온/강수/습도/바람/자외선/미세먼지/초미세먼지는 행 단위 숫자 텍스트로 제공
+- 컬럼 밀도: 모바일 우선 가독성을 위해 요일 컬럼 폭을 좁게 유지(컴팩트 테이블)
 
 ## 7-3. Calendar 표현 원칙
 
@@ -307,6 +328,7 @@
 - 스타일 엔진: 전역 CSS(`src/index.css`) + 화면 CSS(`src/pages/pages.css`) + 레이아웃 CSS
 - 우선 원칙: **토큰 우선(token-first CSS)** / rem 기반 / 반복 스타일 변수화
 - 점진 이관: 신규 UI는 토큰 기반으로 작성하고, 기존 하드코딩 스타일은 리팩터링 단계에서 순차 치환
+- 반영 상태: 홈 핵심 영역(`오늘 날씨 예상`, `지금 가기 좋은 곳`, `5일 예보`, `home-sheet`)은 semantic alias 토큰 기준으로 1차 통일 완료
 
 ---
 

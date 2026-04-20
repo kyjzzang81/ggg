@@ -5,6 +5,7 @@ import { PageStatus } from '../components/PageStatus'
 import { ProdField, ProdPageChrome, ProdSection } from '../components/ProdPageChrome'
 import { useAuth } from '../hooks/useAuth'
 import { useCities } from '../hooks/useCities'
+import { syncNearbyPlaces } from '../lib/nearbySync'
 import { supabase } from '../lib/supabaseClient'
 import { PAGE_STATUS_COPY } from '../ui/pageStatus'
 import './pages.css'
@@ -348,8 +349,37 @@ export function NearbyProdPage() {
           return
         }
 
-        setPlacesErr(null)
-        setPlaces((full.data ?? []) as { title: string; addr: string | null; lat: number | null; lon: number | null }[])
+        let nextPlaces = (full.data ?? []) as {
+          title: string
+          addr: string | null
+          lat: number | null
+          lon: number | null
+        }[]
+        let nextErr: string | null = null
+        if (nextPlaces.length === 0) {
+          const sync = await syncNearbyPlaces(cityId)
+          if (!sync.ok) {
+            nextErr = sync.error ?? PAGE_STATUS_COPY.error
+          } else {
+            const retry = await supabase
+              .from('nearby_places')
+              .select('title, addr, lat, lon')
+              .eq('city_id', cityId)
+              .order('cached_at', { ascending: false })
+              .limit(12)
+            if (retry.error) nextErr = retry.error.message
+            else {
+              nextPlaces = (retry.data ?? []) as {
+                title: string
+                addr: string | null
+                lat: number | null
+                lon: number | null
+              }[]
+            }
+          }
+        }
+        setPlacesErr(nextErr)
+        setPlaces(nextPlaces)
       } catch {
         setPlacesErr(PAGE_STATUS_COPY.error)
         setPlaces([])
