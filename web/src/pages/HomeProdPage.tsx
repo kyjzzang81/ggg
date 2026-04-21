@@ -599,7 +599,10 @@ async function fetchForecastRows(
   }
 
   const { error } = await attempts[0]();
-  return { rows: [], error: error?.message ?? "unknown forecast_weather error" };
+  return {
+    rows: [],
+    error: error?.message ?? "unknown forecast_weather error",
+  };
 }
 
 /* ── ggg 로고 도트 (가로) ── */
@@ -661,7 +664,9 @@ function GsScore({ grade }: { grade: GsGrade }) {
 
 /* ── 5일 기온 그래프 (SVG) ── */
 function TempGraph({ days }: { days: DailySummary[] }) {
-  const vals = days.flatMap((d) => [d.max, d.min]).filter((v): v is number => v != null);
+  const vals = days
+    .flatMap((d) => [d.max, d.min])
+    .filter((v): v is number => v != null);
   if (vals.length < 2) return null;
   const globalMin = Math.min(...vals),
     globalMax = Math.max(...vals);
@@ -693,15 +698,15 @@ function TempGraph({ days }: { days: DailySummary[] }) {
       <svg width="100%" viewBox={`0 0 ${W} ${H}`} aria-hidden>
         <defs>
           <linearGradient id="forecastTempOverlay" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#7ad8be" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#7ad8be" stopOpacity="0.03" />
+            <stop offset="0%" stopColor="#4a6cf7" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#4a6cf7" stopOpacity="0.03" />
           </linearGradient>
         </defs>
         <path d={areaPath} fill="url(#forecastTempOverlay)" />
         <path
           d={linePath}
-          stroke="#5fbca2"
-          strokeWidth="2.2"
+          stroke="#4a6cf7"
+          strokeWidth="1"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -1729,7 +1734,9 @@ export function HomeProdPage() {
                     <TempGraph days={daily.slice(0, 5)} />
                     <div className="home-forecast-row">
                       <span className="home-forecast-label home-forecast-label--max">
-                        <span className="home-forecast-label__title">최고기온</span>
+                        <span className="home-forecast-label__title">
+                          최고기온
+                        </span>
                         <span className="home-forecast-label__unit">°C</span>
                       </span>
                       {daily.slice(0, 5).map((d) => (
@@ -1743,7 +1750,9 @@ export function HomeProdPage() {
                     </div>
                     <div className="home-forecast-row">
                       <span className="home-forecast-label home-forecast-label--min">
-                        <span className="home-forecast-label__title">최저기온</span>
+                        <span className="home-forecast-label__title">
+                          최저기온
+                        </span>
                         <span className="home-forecast-label__unit">°C</span>
                       </span>
                       {daily.slice(0, 5).map((d) => (
@@ -1760,7 +1769,9 @@ export function HomeProdPage() {
                   <div className="home-forecast-row home-forecast-row--purple">
                     <span className="home-forecast-label">
                       <span className="home-forecast-label__title">자외선</span>
-                      <span className="home-forecast-label__unit">UV index</span>
+                      <span className="home-forecast-label__unit">
+                        UV index
+                      </span>
                     </span>
                     {daily.slice(0, 5).map((d) => (
                       <span key={d.key} className="home-forecast-val">
@@ -1786,7 +1797,9 @@ export function HomeProdPage() {
                   <div className="home-forecast-group home-forecast-group--yellow">
                     <div className="home-forecast-row">
                       <span className="home-forecast-label">
-                        <span className="home-forecast-label__title">강수확률</span>
+                        <span className="home-forecast-label__title">
+                          강수확률
+                        </span>
                         <span className="home-forecast-label__unit">%</span>
                       </span>
                       {daily.slice(0, 5).map((d) => (
@@ -1800,7 +1813,9 @@ export function HomeProdPage() {
                     </div>
                     <div className="home-forecast-row">
                       <span className="home-forecast-label">
-                        <span className="home-forecast-label__title">강수량</span>
+                        <span className="home-forecast-label__title">
+                          강수량
+                        </span>
                         <span className="home-forecast-label__unit">mm</span>
                       </span>
                       {daily.slice(0, 5).map((d) => (
@@ -1828,7 +1843,9 @@ export function HomeProdPage() {
                   <div className="home-forecast-group home-forecast-group--green">
                     <div className="home-forecast-row">
                       <span className="home-forecast-label">
-                        <span className="home-forecast-label__title">미세먼지</span>
+                        <span className="home-forecast-label__title">
+                          미세먼지
+                        </span>
                         <span className="home-forecast-label__unit">ug/m3</span>
                       </span>
                       {daily.slice(0, 5).map((d) => (
@@ -1841,7 +1858,9 @@ export function HomeProdPage() {
                     </div>
                     <div className="home-forecast-row">
                       <span className="home-forecast-label">
-                        <span className="home-forecast-label__title">초미세먼지</span>
+                        <span className="home-forecast-label__title">
+                          초미세먼지
+                        </span>
                         <span className="home-forecast-label__unit">ug/m3</span>
                       </span>
                       {daily.slice(0, 5).map((d) => (
