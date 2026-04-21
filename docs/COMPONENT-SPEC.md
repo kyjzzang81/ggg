@@ -1,6 +1,7 @@
 # ggg Component Specification
 
 > 목적: 화면 구현 전에 컴포넌트 계약(Props, 상태, 접근성, 반응형, 이벤트)을 고정해 프론트엔드 구현/리뷰 기준을 일치시킨다.
+> 마지막 업데이트: 2026-04-21
 
 > 범위: Phase 1 MVP 핵심 컴포넌트 13개  
 > 기준 문서: `PRD.md`, `DEV-SPEC.md`, `DESIGN-SYSTEM.md`, `MVP-SCOPE.md`
@@ -202,6 +203,7 @@ interface ScoreCalendarProps {
   year: number;
   month: number; // 1~12
   days: ScoreCalendarDay[];
+  viewMode?: "monthly" | "weekly" | "daily"; // 추천도 표현 단위
   rangeStartDay?: number | null;
   rangeEndDay?: number | null;
   onSelectDay: (day: number) => void;
@@ -215,9 +217,92 @@ interface ScoreCalendarProps {
   - 일자별 `score + grade` 표시
   - 범위(start/end) 선택 표시
   - 월 전환
+  - 월/주/일 뷰 전환 시 추천도 표현 동기화
 - 접근성
   - `role="grid"` / `role="gridcell"` 권장
   - 셀 `aria-label`: `"3일, 69점, 추천"`
+
+## 2-7-1. `ScoreCityPicker`
+
+스코어 화면 진입 직후 중앙에서 도시를 고르게 하는 선택 컴포넌트.
+
+```ts
+interface ScoreCityPickerProps {
+  value: string | null; // city_id
+  options: Array<{ id: string; name: string }>;
+  onChange: (cityId: string) => void;
+  state?: AsyncState;
+}
+```
+
+- 상태
+  - `loading`: 검색 입력/목록 스켈레톤
+  - `empty`: 매칭 도시 없음 안내
+  - `error`: 불러오기 실패 + 재시도
+
+## 2-7-2. `ScoreContextPanel`
+
+선택한 도시/기간의 데이터 해석 영역(홈 insight 유사).
+
+```ts
+interface ScoreContextPanelProps {
+  cityLabel: string;
+  rangeLabel: string;
+  summary: string;
+  bullets?: string[];
+  mode: { couple: boolean; family: boolean };
+  state?: AsyncState;
+}
+```
+
+## 2-7-3. `TravelTypeTabs`
+
+여행형태 3개 탭과 선택 상태.
+
+```ts
+type TravelTypeKey = "relax" | "activity" | "citywalk";
+
+interface TravelTypeTabsProps {
+  items: Array<{ key: TravelTypeKey; label: string }>;
+  selected: TravelTypeKey;
+  onChange: (key: TravelTypeKey) => void;
+}
+```
+
+## 2-7-4. `ScoreRecommendationList`
+
+선택한 여행형태 기준 Top 5 주차 추천 목록.
+
+```ts
+interface ScoreRecommendationItem {
+  weekLabel: string; // 예: "10월 2주차"
+  grade: ScoreGrade;
+  score?: number;
+  reason: string; // 추천 이유
+  dataPoints?: string[]; // 핵심 지표 요약
+}
+
+interface ScoreRecommendationListProps {
+  items: ScoreRecommendationItem[];
+  state?: AsyncState;
+}
+```
+
+## 2-7-5. `DdaySaveSheet`
+
+스코어 화면 하단 CTA에서 호출되는 D-day 저장 바텀시트.
+
+```ts
+interface DdaySaveSheetProps {
+  open: boolean;
+  cityId: string;
+  cityLabel: string;
+  startDate: string | null;
+  endDate?: string | null;
+  onClose: () => void;
+  onSaved?: (eventId: string) => void;
+}
+```
 
 ## 2-8. `WeatherSwitcher`
 

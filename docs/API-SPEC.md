@@ -2,6 +2,7 @@
 
 > 목적: 프론트엔드가 사용하는 데이터 계약을 명확히 해 구현/리뷰/테스트 기준을 통일한다.  
 > 형태: Supabase 직접 쿼리 + RPC + Edge Function 호출
+> 마지막 업데이트: 2026-04-21
 
 ---
 
@@ -50,6 +51,18 @@
 
 ## 3. ggg score
 
+## 3-0. 스코어 진입 플로우 계약
+
+- 순서:
+  1) 도시 선택 (`cities`)
+  2) 캘린더 추천도 조회 (월/주/일)
+  3) 컨텍스트 해석 조회
+  4) 여행형태 탭별 Top 5 추천 조회
+  5) D-day 저장 바텀시트 호출
+- 모드 반영:
+  - 입력에 `mode`(`default` | `couple` | `family` | `couple_family`) 포함 가능
+  - `mode` 변경 시 2~4 단계 재조회
+
 ## 3-1. 주별 점수
 
 - 소스: `best_travel_week`
@@ -61,6 +74,45 @@
 - 소스 우선순위:
   1) `climate_score_monthly`
   2) `best_travel_week` 집계
+
+## 3-3. 캘린더 추천도 (월/주/일)
+
+- 소스:
+  - 월: `climate_score_monthly`
+  - 주: `best_travel_week`
+  - 일: `climate_normals` + 파생 로직(등급 매핑)
+- 입력:
+  - `city_id`
+  - `year`, `month`
+  - `view_mode` (`monthly` | `weekly` | `daily`)
+  - `mode` (옵션)
+- 출력:
+  - `cells`: 날짜/주차 단위 추천도 데이터
+  - `summary`: 평균 점수/등급, 선택 범위 정보
+  - `state`: `ready` | `empty`
+
+## 3-4. 컨텍스트(해석 영역)
+
+- 소스: `monthly_climate`, `climate_normals`, `best_travel_week` 조합
+- 입력:
+  - `city_id`
+  - `start_date`, `end_date`
+  - `mode` (옵션)
+- 출력:
+  - `summary_text` (한 줄 해석)
+  - `bullets` (근거 2~4개)
+
+## 3-5. 여행형태 탭 Top 5 추천
+
+- 소스: `activity_weather_score`, `best_travel_week`
+- 입력:
+  - `city_id`
+  - `travel_type` (예: `relax` | `activity` | `citywalk`)
+  - `start_date`, `end_date` (또는 `month`)
+  - `mode` (옵션)
+- 출력:
+  - 추천 5건
+  - 각 항목: `week_label`, `grade`, `score`, `reason`, `data_points[]`
 
 ---
 
@@ -101,6 +153,18 @@
 - 동작:
   - CRUD + 날짜 기반 지표 조회
 
+## 6-1. 스코어 화면 저장 (BottomSheet)
+
+- 입력(생성):
+  - `title` (옵션, 미입력 시 기본값 자동 생성)
+  - `city_id`
+  - `date_from`, `date_to`
+  - `mode_context` (옵션: 저장 시점 모드)
+- 출력:
+  - `event_id`
+  - `saved_at`
+  - 저장된 이벤트 요약
+
 ---
 
 ## 7. RPC 계약
@@ -136,6 +200,24 @@
 - 출력:
 ```json
 { "processed": 1200, "changed": 214 }
+```
+
+## 8-3. `weather-cache`
+
+- 입력:
+```json
+{ "city_id": "paju", "lat": 37.76, "lon": 126.78 }
+```
+- 출력:
+```json
+{
+  "city_id": "paju",
+  "cache_hit": true,
+  "cached_at": "2026-04-21T01:00:00.000Z",
+  "forecast_rows": [],
+  "pm25_by_day": {},
+  "uv_by_day": {}
+}
 ```
 
 ---
