@@ -25,11 +25,11 @@
   --color-text-muted: #667085;
   --color-text-subtle: #475467;
   --color-border-subtle: #e4e7ec;
-  --color-border-muted: #ececef;
+  --color-border-muted: #f6f6f9;
   --color-surface-base: #ffffff;
   --color-surface-muted: #f4f5f7;
-  --color-surface-soft: #f7f7f8;
-  --color-surface-label: #f0f1f3;
+  --color-surface-soft: #ffffff;
+  --color-surface-label: #f5f7fb;
 
   /* Text style tokens (Figma) */
   --text-card-title-active: 28px;

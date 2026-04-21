@@ -1064,17 +1064,6 @@
 }
 
 /* 그룹 (배경색 공유) */
-.home-forecast-group--blue .home-forecast-row {
-  background: transparent;
-  position: relative;
-  z-index: 1;
-}
-.home-forecast-group--yellow .home-forecast-row {
-  background: var(--color-surface-soft);
-}
-.home-forecast-group--green .home-forecast-row {
-  background: var(--color-surface-soft);
-}
 
 .home-forecast-label {
   color: var(--color-text-default);
@@ -1087,7 +1076,7 @@
   align-items: flex-start;
   gap: 0.2rem;
   padding: 0.4rem 0.25rem 0.4rem 0.65rem;
-  background: var(--color-surface-label);
+  background: var(--color-lightgrey);
   border-right: 1px solid var(--color-border-subtle);
 }
 .home-forecast-label__title {
@@ -1098,7 +1087,7 @@
 .home-forecast-label__unit {
   font-size: var(--fs-2xs);
   font-weight: 600;
-  color: var(--color-text-muted);
+
   line-height: 1;
   white-space: nowrap;
 }
@@ -1120,10 +1109,10 @@
   padding: 0.5rem 0.2rem;
 }
 .home-forecast-day.--sat {
-  color: var(--color-text-muted);
+  color: var(--color-primary);
 }
 .home-forecast-day.--sun {
-  color: var(--color-text-muted);
+  color: var(--color-negative);
 }
 
 .home-forecast-icon {
