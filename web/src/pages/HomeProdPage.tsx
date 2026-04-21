@@ -856,8 +856,65 @@ function defaultHomeCards(couple: boolean, family: boolean): HomeCardData[] {
   ];
 }
 
+function HomeLoadingSkeleton() {
+  return (
+    <>
+      <div className="home-hero home-skeleton">
+        <div className="home-skeleton__hero-top">
+          <div className="home-skeleton__line home-skeleton__line--hero-title" />
+          <div className="home-skeleton__hero-menu" />
+        </div>
+        <div className="home-skeleton__hero-weather">
+          <div className="home-skeleton__hero-left">
+            <div className="home-skeleton__hero-icon" />
+            <div className="home-skeleton__line home-skeleton__line--hero-loc" />
+          </div>
+          <div className="home-skeleton__hero-right">
+            <div className="home-skeleton__line home-skeleton__line--hero-temp" />
+            <div className="home-skeleton__line home-skeleton__line--hero-range" />
+          </div>
+        </div>
+        <div className="home-skeleton__insight" />
+      </div>
+
+      <section className="home-section home-skeleton">
+        <div className="home-skeleton__line home-skeleton__line--title" />
+        <div className="home-skeleton__metric-grid">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={`sk-metric-${i}`} className="home-skeleton__metric-card" />
+          ))}
+        </div>
+        <div className="home-skeleton__detail" />
+      </section>
+
+      <section className="home-section home-skeleton">
+        <div className="home-skeleton__line home-skeleton__line--title" />
+        <div className="home-skeleton__place-list">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div key={`sk-place-${i}`} className="home-skeleton__place-card" />
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section home-skeleton">
+        <div className="home-skeleton__line home-skeleton__line--title" />
+        <div className="home-skeleton__forecast" />
+      </section>
+
+      <section className="home-section home-skeleton">
+        <div className="home-skeleton__line home-skeleton__line--title" />
+        <div className="home-skeleton__cards">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={`sk-card-${i}`} className="home-skeleton__plan-card" />
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
 export function HomeProdPage() {
-  const { openSidebar } = useSidebar();
+  useSidebar();
   const mode = useModeStore();
   const { cities, cityId, setCityId, citiesLoading, citiesError } = useCities(
     500,
@@ -887,7 +944,21 @@ export function HomeProdPage() {
   const [assistOpen, setAssistOpen] = useState(false);
   const [assistMetricKey, setAssistMetricKey] = useState<string | null>(null);
   const [cityPickerOpen, setCityPickerOpen] = useState(false);
+  const [closingSheet, setClosingSheet] = useState<"assist" | "city" | null>(
+    null,
+  );
   const showLoading = citiesLoading || loading;
+  const closeSheet = (sheet: "assist" | "city") => {
+    setClosingSheet(sheet);
+    window.setTimeout(() => {
+      if (sheet === "assist") {
+        setAssistOpen(false);
+        setAssistMetricKey(null);
+      }
+      if (sheet === "city") setCityPickerOpen(false);
+      setClosingSheet(null);
+    }, 220);
+  };
 
   const loadTokenRef = useRef(0);
   const cityIdRef = useRef(cityId);
@@ -907,6 +978,10 @@ export function HomeProdPage() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (heroCompact) setInsightExpanded(false);
+  }, [heroCompact]);
 
   useEffect(() => {
     if (
@@ -1086,12 +1161,6 @@ export function HomeProdPage() {
   const avgTemp = avgTemperature(forecast.slice(0, 24));
   const today = daily[0];
   const cityName = currentCity?.name_ko ?? null;
-
-  const heroTitle = first
-    ? first.weather_code != null && [0, 1, 2].includes(first.weather_code)
-      ? "오늘은 야외 활동 최적의 하루!"
-      : "오늘 컨디션에 맞춰 일정을 조정해 보세요"
-    : "오늘 날씨 데이터를 준비하고 있어요";
 
   const insightText = useMemo(() => {
     if (freq) {
@@ -1430,96 +1499,81 @@ export function HomeProdPage() {
       ) : null}
       {citiesError ? <PageStatus variant="error" /> : null}
 
-      {/* ══════════════ HERO ══════════════ */}
-      <div className={`home-hero${heroCompact ? " home-hero--compact" : ""}`}>
-        {/* 타이틀 행 — 항상 표시 */}
-        <div className="home-hero__toprow">
-          <div className="home-hero__brand">
-            <GggDots size={heroCompact ? 12 : 18} />
-            <span className="home-hero__msg">{heroTitle}</span>
-          </div>
-          <button
-            type="button"
-            className="home-hero__menu-btn"
-            aria-label="메뉴 열기"
-            onClick={openSidebar}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-
-        {/* 날씨 + 온도 */}
-        <div
-          className={`home-hero__weather${heroCompact ? " home-hero__weather--hidden" : ""}`}
-        >
-          <div className="home-hero__weather-left">
-            <img
-              className="home-hero__weather-icon"
-              src={weatherIcon(first?.weather_code ?? null)}
-              alt={weatherLabel(first?.weather_code ?? null)}
-            />
-            <p className="home-hero__location">
-              {geoLabel ?? cityName ?? "위치 확인 중"}
-            </p>
-          </div>
-          <div className="home-hero__weather-right">
-            <div className="home-hero__temp-row">
-              <span className="home-hero__temp">
-                {first?.temperature != null
-                  ? Math.round(first.temperature)
-                  : "—"}
-              </span>
-              <span className="home-hero__temp-unit">° C</span>
-            </div>
-            <div className="home-hero__temp-range">
-              <span>
-                최저 {today?.min != null ? `${Math.round(today.min)}°` : "—"}
-              </span>
-              <span>
-                최고 {today?.max != null ? `${Math.round(today.max)}°` : "—"}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* insight 카드 */}
-        <div className="home-insight">
-          <div className="home-insight__head">
-            <span className="home-insight__badge">insight</span>
-            {/* iOS 스타일 토글 */}
-            <button
-              type="button"
-              role="switch"
-              aria-checked={insightExpanded}
-              className={`home-insight__toggle${insightExpanded ? " home-insight__toggle--on" : ""}`}
-              onClick={() => setInsightExpanded((v) => !v)}
-              aria-label="인사이트 펼치기/접기"
-            >
-              <span className="home-insight__toggle-thumb" />
-            </button>
-          </div>
-          <div
-            className={`home-insight__content${insightExpanded ? " home-insight__content--open" : ""}`}
-          >
-            <p className="home-insight__text">{insightText}</p>
-            {clothingTags.length > 0 && (
-              <div className="home-insight__tags">
-                {clothingTags.map((tag) => (
-                  <span key={tag} className="home-insight__tag">
-                    {tag}
-                  </span>
-                ))}
+      {!showLoading && !error && (
+        <div className={`home-hero${heroCompact ? " home-hero--compact" : ""}`}>
+          {!heroCompact && (
+            <>
+              {/* 날씨 + 온도 */}
+              <div className="home-hero__weather">
+                <div className="home-hero__weather-left">
+                  <img
+                    className="home-hero__weather-icon"
+                    src={weatherIcon(first?.weather_code ?? null)}
+                    alt={weatherLabel(first?.weather_code ?? null)}
+                  />
+                  <p className="home-hero__location">
+                    {geoLabel ?? cityName ?? "위치 확인 중"}
+                  </p>
+                </div>
+                <div className="home-hero__weather-right">
+                  <div className="home-hero__temp-row">
+                    <span className="home-hero__temp">
+                      {first?.temperature != null
+                        ? Math.round(first.temperature)
+                        : "—"}
+                    </span>
+                    <span className="home-hero__temp-unit">° C</span>
+                  </div>
+                  <div className="home-hero__temp-range">
+                    <span>
+                      최저 {today?.min != null ? `${Math.round(today.min)}°` : "—"}
+                    </span>
+                    <span>
+                      최고 {today?.max != null ? `${Math.round(today.max)}°` : "—"}
+                    </span>
+                  </div>
+                </div>
               </div>
-            )}
+            </>
+          )}
+
+          {/* insight 카드 */}
+          <div className="home-insight">
+            <div className="home-insight__head">
+              <span className="home-insight__badge">insight</span>
+              {/* iOS 스타일 토글 */}
+              <button
+                type="button"
+                role="switch"
+                aria-checked={insightExpanded}
+                className={`home-insight__toggle${insightExpanded ? " home-insight__toggle--on" : ""}`}
+                onClick={() => setInsightExpanded((v) => !v)}
+                aria-label="인사이트 펼치기/접기"
+              >
+                <span className="home-insight__toggle-thumb" />
+              </button>
+            </div>
+            <div
+              className={`home-insight__content${insightExpanded ? " home-insight__content--open" : ""}`}
+            >
+              <p className="home-insight__text">{insightText}</p>
+              {clothingTags.length > 0 && (
+                <div className="home-insight__tags">
+                  {clothingTags.map((tag) => (
+                    <span key={tag} className="home-insight__tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 로딩 / 에러 */}
       {error ? <PageStatus variant="error" /> : null}
-      {showLoading ? <PageStatus variant="loading" /> : null}
+      {showLoading && !error ? <HomeLoadingSkeleton /> : null}
 
       {!showLoading && !error && (
         <>
@@ -1923,12 +1977,16 @@ export function HomeProdPage() {
       </button>
 
       {/* ── assist 바텀시트 ── */}
-      {assistOpen && (
-        <div className="home-sheet" role="dialog" aria-modal>
+      {(assistOpen || closingSheet === "assist") && (
+        <div
+          className={`home-sheet${closingSheet === "assist" ? " is-closing" : ""}`}
+          role="dialog"
+          aria-modal
+        >
           <button
             type="button"
             className="home-sheet__backdrop"
-            onClick={() => setAssistOpen(false)}
+            onClick={() => closeSheet("assist")}
           />
           <div className="home-sheet__panel">
             <div className="home-sheet__handle" />
@@ -1977,10 +2035,7 @@ export function HomeProdPage() {
             <button
               type="button"
               className="home-sheet__close"
-              onClick={() => {
-                setAssistOpen(false);
-                setAssistMetricKey(null);
-              }}
+              onClick={() => closeSheet("assist")}
             >
               닫기
             </button>
@@ -1989,12 +2044,16 @@ export function HomeProdPage() {
       )}
 
       {/* ── 도시 선택 바텀시트 ── */}
-      {cityPickerOpen && (
-        <div className="home-sheet" role="dialog" aria-modal>
+      {(cityPickerOpen || closingSheet === "city") && (
+        <div
+          className={`home-sheet${closingSheet === "city" ? " is-closing" : ""}`}
+          role="dialog"
+          aria-modal
+        >
           <button
             type="button"
             className="home-sheet__backdrop"
-            onClick={() => setCityPickerOpen(false)}
+            onClick={() => closeSheet("city")}
           />
           <div className="home-sheet__panel">
             <div className="home-sheet__handle" />
@@ -2005,6 +2064,7 @@ export function HomeProdPage() {
               setCityId={(id) => {
                 setCityId(id);
                 setCitiesPickedByUser(true);
+                setClosingSheet(null);
                 setCityPickerOpen(false);
               }}
               onUserPick={() => setCitiesPickedByUser(true)}
