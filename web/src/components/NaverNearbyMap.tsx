@@ -7,6 +7,7 @@ type Props = {
   clientId: string
   center: { lat: number; lon: number }
   markers: NaverMapMarker[]
+  selectedMarkerTitle?: string | null
   /** 내 위치 마커를 추천 장소보다 위에 표시 */
   userZIndex?: number
   poiZIndex?: number
@@ -16,6 +17,7 @@ export function NaverNearbyMap({
   clientId,
   center,
   markers,
+  selectedMarkerTitle = null,
   userZIndex = 50,
   poiZIndex = 10,
 }: Props) {
@@ -44,16 +46,28 @@ export function NaverNearbyMap({
           position: centerLatLng,
           map,
           title: '내 위치',
+          icon: {
+            content:
+              '<div class="nearby-map-user-pulse"><span class="nearby-map-user-pulse__dot"></span></div>',
+            anchor: { x: 9, y: 9 },
+          },
           zIndex: userZIndex,
-        })
+        } as any)
 
         for (const m of markersList) {
+          const picked = selectedMarkerTitle != null && m.title === selectedMarkerTitle
           new naver.maps.Marker({
             position: new naver.maps.LatLng(m.lat, m.lng),
             map,
             title: m.title,
+            icon: {
+              content: picked
+                ? '<div class="nearby-map-poi-marker nearby-map-poi-marker--active"></div>'
+                : '<div class="nearby-map-poi-marker"></div>',
+              anchor: { x: picked ? 10 : 7, y: picked ? 26 : 7 },
+            },
             zIndex: poiZIndex,
-          })
+          } as any)
         }
 
         if (markersList.length > 0) {
@@ -76,7 +90,7 @@ export function NaverNearbyMap({
       }
       mapRef.current = null
     }
-  }, [clientId, center.lat, center.lon, markers, userZIndex, poiZIndex])
+  }, [clientId, center.lat, center.lon, markers, poiZIndex, selectedMarkerTitle, userZIndex])
 
   return <div ref={containerRef} className="naver-nearby-map" role="presentation" />
 }
