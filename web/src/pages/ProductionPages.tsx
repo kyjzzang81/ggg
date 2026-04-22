@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CityPicker } from "../components/CityPicker";
 import { NaverNearbyMap } from "../components/NaverNearbyMap";
 import { PageStatus } from "../components/PageStatus";
-import { ProdPageChrome, ProdSection } from "../components/ProdPageChrome";
+import { ProdField, ProdPageChrome, ProdSection } from "../components/ProdPageChrome";
 import { useAuth } from "../hooks/useAuth";
 import { useCities } from "../hooks/useCities";
 import { syncNearbyPlaces } from "../lib/nearbySync";
@@ -19,9 +19,148 @@ type WeekScore = {
   humidity_score?: number | null;
 };
 
+type Monthly = {
+  month: number;
+  temp_avg: number | null;
+  rain_probability: number | null;
+  humidity_avg: number | null;
+};
+
 function isMissingColumnError(err: { message?: string } | null | undefined) {
   const m = err?.message ?? "";
   return m.toLowerCase().includes("column") && m.includes("does not exist");
+}
+
+type NearbyPlace = {
+  title: string;
+  category: string | null;
+  summary: string | null;
+  addr: string | null;
+  lat: number | null;
+  lon: number | null;
+  weather_tags: string[] | null;
+  mode_tags: string[] | null;
+};
+
+type NearbyTab = {
+  key: string;
+  label: string;
+};
+
+function normalizeNearbyCategory(raw: string | null | undefined) {
+  const val = (raw ?? "").toLowerCase().trim();
+  if (!val) return "기타";
+  if (/맛집|음식|food|restaurant|cafe|카페/.test(val)) return "맛집";
+  if (/자연|공원|park|trail|hiking|산|숲|해변|beach/.test(val))
+    return "자연";
+  if (/전시|박물관|museum|gallery|문화|culture|art/.test(val)) return "문화";
+  if (/쇼핑|마켓|shopping|store/.test(val)) return "쇼핑";
+  if (/체험|activity|놀이|레저|sports|sport/.test(val)) return "액티비티";
+  return "기타";
+}
+
+function distanceKm(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+): number {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
+}
+
+function formatNearbyDistance(km: number | null): string {
+  if (km == null || !Number.isFinite(km)) return "거리 정보 준비 중";
+  if (km < 1) return `현재 위치에서 약 ${Math.round(km * 1000)}m`;
+  return `현재 위치에서 약 ${km.toFixed(1)}km`;
+}
+
+function NearbyGsScore({ rank }: { rank: number }) {
+  const grade = rank <= 1 ? "강력 추천" : rank === 2 ? "추천" : "보통";
+  return (
+    <div className="home-gs-score nearby-gs-score" aria-hidden="true">
+      <span className="home-gs-score__dots">
+        {rank <= 1 ? (
+          <>
+            <span className="home-gs-score__dot home-ggg-dot--blue" />
+            <span className="home-gs-score__dot home-ggg-dot--purple" />
+            <span className="home-gs-score__dot home-ggg-dot--green" />
+          </>
+        ) : rank === 2 ? (
+          <>
+            <span className="home-gs-score__dot home-ggg-dot--purple" />
+            <span className="home-gs-score__dot home-ggg-dot--green" />
+          </>
+        ) : (
+          <span className="home-gs-score__dot home-ggg-dot--green" />
+        )}
+      </span>
+      <span className="home-gs-score__label">{grade}</span>
+    </div>
+  );
+}
+
+function nearbyTabEmoji(label: string): string {
+  if (/맛집|카페/.test(label)) return "🍽️";
+  if (/자연|공원|산|해변/.test(label)) return "🌿";
+  if (/문화|전시/.test(label)) return "🎨";
+  if (/쇼핑/.test(label)) return "🛍️";
+  if (/액티비티/.test(label)) return "🏃";
+  return "📍";
+}
+
+function firstCityWithCoords(
+  cities: {
+    id: string;
+    name_ko: string;
+    lat: number | null;
+    lon: number | null;
+  }[],
+) {
+  const c = cities.find(
+    (row) =>
+      row.lat != null &&
+      row.lon != null &&
+      Number.isFinite(row.lat) &&
+      Number.isFinite(row.lon),
+  );
+  if (!c) return null;
+  return {
+    id: c.id,
+    name_ko: c.name_ko,
+    lat: c.lat as number,
+    lon: c.lon as number,
+  };
+}
+
+function NearbyLoadingSkeleton() {
+  return (
+    <>
+      <section className="home-hero nearby-hero nearby-skeleton" aria-hidden="true">
+        <div className="nearby-skeleton__brand" />
+        <div className="nearby-skeleton__title" />
+        <div className="nearby-skeleton__title nearby-skeleton__title--short" />
+        <div className="nearby-skeleton__desc" />
+      </section>
+      <section className="home-section nearby-section nearby-skeleton" aria-hidden="true">
+        <div className="nearby-skeleton__tabs" />
+        <div className="nearby-skeleton__card" />
+        <div className="nearby-skeleton__card" />
+        <div className="nearby-skeleton__card" />
+      </section>
+      <section className="home-section nearby-section nearby-skeleton" aria-hidden="true">
+        <div className="nearby-skeleton__map-title" />
+        <div className="nearby-skeleton__map" />
+      </section>
+    </>
+  );
 }
 
 type ScoreViewMode = "month" | "week" | "day";
@@ -902,7 +1041,6 @@ export function NearbyProdPage() {
     500,
     "nearby:last-city-id",
   );
-  const skipGpsCitySyncRef = useRef(false);
   const [nearest, setNearest] = useState<{
     id: string;
     name_ko: string;
@@ -917,22 +1055,29 @@ export function NearbyProdPage() {
     "pending" | "ok" | "unavailable" | "denied"
   >("pending");
   const [places, setPlaces] = useState<
-    {
-      title: string;
-      addr: string | null;
-      lat: number | null;
-      lon: number | null;
-    }[]
+    NearbyPlace[]
   >([]);
   const [placesLoading, setPlacesLoading] = useState(false);
   const [placesErr, setPlacesErr] = useState<string | null>(null);
+  const [selectedTab, setSelectedTab] = useState<string>("전체");
+  const [selectedPlaceTitle, setSelectedPlaceTitle] = useState<string | null>(null);
 
   useEffect(() => {
     if (!cities.length || typeof navigator === "undefined") {
+      const fallback = firstCityWithCoords(cities);
+      if (fallback && !cityId) {
+        setNearest(fallback);
+        setCityId(fallback.id);
+      }
       setGeoState(cities.length ? "unavailable" : "pending");
       return;
     }
     if (!navigator.geolocation) {
+      const fallback = firstCityWithCoords(cities);
+      if (fallback) {
+        setNearest(fallback);
+        if (!cityId) setCityId(fallback.id);
+      }
       setGeoState("unavailable");
       return;
     }
@@ -957,19 +1102,43 @@ export function NearbyProdPage() {
             best = { id: c.id, name_ko: c.name_ko, lat: c.lat, lon: c.lon };
           }
         }
-        setNearest(best);
-        if (best && !skipGpsCitySyncRef.current) {
-          setCityId(best.id);
+        const fallbackCity = best
+          ? best
+          : (() => {
+              const firstWithCoords = cities.find(
+                (c) =>
+                  c.lat != null &&
+                  c.lon != null &&
+                  Number.isFinite(c.lat) &&
+                  Number.isFinite(c.lon),
+              );
+              return firstWithCoords
+                ? {
+                    id: firstWithCoords.id,
+                    name_ko: firstWithCoords.name_ko,
+                    lat: firstWithCoords.lat as number,
+                    lon: firstWithCoords.lon as number,
+                  }
+                : null;
+            })();
+        setNearest(fallbackCity);
+        if (fallbackCity) {
+          setCityId(fallbackCity.id);
         }
         setGeoState("ok");
       },
       () => {
         setUserCoords(null);
+        const fallback = firstCityWithCoords(cities);
+        if (fallback) {
+          setNearest(fallback);
+          if (!cityId) setCityId(fallback.id);
+        }
         setGeoState("denied");
       },
       { enableHighAccuracy: false, maximumAge: 120_000, timeout: 12_000 },
     );
-  }, [cities, setCityId]);
+  }, [cities, cityId, setCityId]);
 
   const mapCenter = useMemo(() => {
     if (userCoords) return userCoords;
@@ -1004,6 +1173,35 @@ export function NearbyProdPage() {
     [places],
   );
 
+  const placeTabs = useMemo<NearbyTab[]>(() => {
+    const labels = Array.from(
+      new Set(places.map((p) => normalizeNearbyCategory(p.category))),
+    );
+    return [{ key: "전체", label: "전체" }, ...labels.map((label) => ({ key: label, label }))];
+  }, [places]);
+
+  useEffect(() => {
+    if (!placeTabs.some((tab) => tab.key === selectedTab)) {
+      setSelectedTab("전체");
+    }
+  }, [placeTabs, selectedTab]);
+
+  const visiblePlaces = useMemo(() => {
+    const base =
+      selectedTab === "전체"
+        ? places
+        : places.filter(
+            (p) => normalizeNearbyCategory(p.category) === selectedTab,
+          );
+    return base.slice(0, 12);
+  }, [places, selectedTab]);
+
+  useEffect(() => {
+    if (!visiblePlaces.some((p) => p.title === selectedPlaceTitle)) {
+      setSelectedPlaceTitle(visiblePlaces[0]?.title ?? null);
+    }
+  }, [selectedPlaceTitle, visiblePlaces]);
+
   useEffect(() => {
     if (!supabase || !cityId) {
       setPlaces([]);
@@ -1019,10 +1217,12 @@ export function NearbyProdPage() {
       try {
         const full = await supabase
           .from("nearby_places")
-          .select("title, addr, lat, lon")
+          .select(
+            "title, category, summary, addr, lat, lon, weather_tags, mode_tags",
+          )
           .eq("city_id", cityId)
           .order("cached_at", { ascending: false })
-          .limit(12);
+          .limit(24);
 
         if (full.error && isMissingColumnError(full.error)) {
           const basic = await supabase
@@ -1039,9 +1239,13 @@ export function NearbyProdPage() {
             setPlaces(
               (basic.data ?? []).map((row) => ({
                 title: row.title,
+                category: null,
+                summary: null,
                 addr: row.addr,
                 lat: null,
                 lon: null,
+                weather_tags: null,
+                mode_tags: null,
               })),
             );
           }
@@ -1054,12 +1258,7 @@ export function NearbyProdPage() {
           return;
         }
 
-        let nextPlaces = (full.data ?? []) as {
-          title: string;
-          addr: string | null;
-          lat: number | null;
-          lon: number | null;
-        }[];
+        let nextPlaces = (full.data ?? []) as NearbyPlace[];
         let nextErr: string | null = null;
         if (nextPlaces.length === 0) {
           const sync = await syncNearbyPlaces(cityId);
@@ -1068,19 +1267,14 @@ export function NearbyProdPage() {
           } else {
             const retry = await supabase
               .from("nearby_places")
-              .select("title, addr, lat, lon")
+              .select(
+                "title, category, summary, addr, lat, lon, weather_tags, mode_tags",
+              )
               .eq("city_id", cityId)
               .order("cached_at", { ascending: false })
-              .limit(12);
+              .limit(24);
             if (retry.error) nextErr = retry.error.message;
-            else {
-              nextPlaces = (retry.data ?? []) as {
-                title: string;
-                addr: string | null;
-                lat: number | null;
-                lon: number | null;
-              }[];
-            }
+            else nextPlaces = (retry.data ?? []) as NearbyPlace[];
           }
         }
         setPlacesErr(nextErr);
@@ -1095,121 +1289,158 @@ export function NearbyProdPage() {
   }, [cityId]);
 
   const selectedCityName = cities.find((c) => c.id === cityId)?.name_ko ?? "";
+  const showNearbySkeleton = citiesLoading || (placesLoading && places.length === 0);
 
   if (!supabase) {
     return (
-      <ProdPageChrome
-        title="주변"
-        lead="내 위치에 가까운 도시를 기준으로 주변 추천을 보여줍니다."
-      >
+      <article className="home-page nearby-page">
         <PageStatus
           variant="error"
           message={PAGE_STATUS_COPY.supabaseMissing}
         />
-      </ProdPageChrome>
+      </article>
+    );
+  }
+
+  if (showNearbySkeleton && !citiesError) {
+    return (
+      <article className="home-page nearby-page">
+        <NearbyLoadingSkeleton />
+      </article>
     );
   }
 
   return (
-    <ProdPageChrome
-      title="주변"
-      lead="아래에서 도시를 고르면 Supabase에 넣어 둔 주변 장소가 표시됩니다. 위치를 허용하면 가까운 도시로 자동 맞춤할 수 있어요."
-    >
-      {citiesLoading ? <PageStatus variant="loading" /> : null}
-      {citiesError ? <PageStatus variant="error" /> : null}
+    <article className="home-page nearby-page">
+      <section className="home-hero nearby-hero">
+        <div className="nearby-hero__brand">
+          <span className="home-ggg-dots" aria-hidden="true">
+            <span className="home-ggg-dot home-ggg-dot--green" />
+            <span className="home-ggg-dot home-ggg-dot--purple" />
+            <span className="home-ggg-dot home-ggg-dot--blue" />
+          </span>
+          <strong>near by</strong>
+        </div>
+        <h2 className="nearby-hero__title">
+          <span>{selectedCityName || nearest?.name_ko || "근처"}에서</span>
+          <br />
+          지금 뭐하면 좋을까?
+        </h2>
+        <p className="nearby-hero__desc">
+          오늘 {selectedCityName || nearest?.name_ko || "이 지역"}의 날씨를 반영해
+          지금 가기 좋은 장소를 추천해요.
+        </p>
+        {citiesError ? <PageStatus variant="error" /> : null}
+      </section>
 
-      {!citiesLoading && !citiesError ? (
-        <CityPicker
-          cities={cities}
-          cityId={cityId}
-          setCityId={setCityId}
-          onUserPick={() => {
-            skipGpsCitySyncRef.current = true;
-          }}
-        />
-      ) : null}
-
-      {mapCenter ? (
-        <ProdSection title="지도">
-          {naverMapClientId ? (
-            <>
-              <p className="page-muted prod-map-hint">
-                내 위치와 캐시된 추천 장소 좌표를 표시합니다. 좌표가 없는 장소는
-                아래 목록에만 표시됩니다.
-              </p>
-              <NaverNearbyMap
-                clientId={naverMapClientId}
-                center={mapCenter}
-                markers={mapMarkers}
-              />
-            </>
-          ) : (
-            <PageStatus
-              variant="empty"
-              message="네이버 지도를 보려면 web/.env.local에 VITE_NAVER_MAP_CLIENT_ID를 설정한 뒤 개발 서버를 다시 시작해 주세요. (네이버 클라우드 콘솔 → Application → Maps → 인증 정보)"
-            />
-          )}
-        </ProdSection>
-      ) : null}
-
-      <ProdSection title="위치 기준 도시">
+      <section className="home-section nearby-section">
         {geoState === "pending" ? (
           <PageStatus variant="loading" message="위치를 확인하는 중이에요." />
         ) : null}
         {geoState === "unavailable" ? (
           <PageStatus
             variant="empty"
-            message="이 환경에서는 위치를 쓸 수 없어요. 위 도시 선택으로 데이터가 있는 city_id를 맞춰 주세요."
+            message="이 환경에서는 위치를 쓸 수 없어요. 도시를 직접 선택해 주세요."
           />
         ) : null}
         {geoState === "denied" ? (
           <PageStatus
             variant="empty"
-            message="위치 권한이 꺼져 있어요. 위 도시 선택으로 조회할 지역을 고르거나, 설정에서 위치를 허용해 주세요."
+            message="위치 권한이 꺼져 있어요. 설정에서 위치 허용 시 자동으로 가까운 도시를 맞춰요."
           />
         ) : null}
-        {geoState === "ok" && !nearest ? (
-          <PageStatus
-            variant="empty"
-            message="도시 목록에 위도·경도가 없으면 가까운 도시를 자동으로 잡지 못해요. 위에서 직접 도시를 선택하면 됩니다."
-          />
-        ) : null}
-        {geoState === "ok" && nearest ? (
-          <p className="prod-kicker">
-            위치 기준 가까운 도시: {nearest.name_ko}
-            {selectedCityName && nearest.id !== cityId
-              ? ` · 선택 도시: ${selectedCityName}`
-              : null}
-          </p>
-        ) : null}
-        {selectedCityName ? (
-          <p className="page-muted" style={{ margin: "0.35rem 0 0" }}>
-            현재 조회 도시: <strong>{selectedCityName}</strong>
-          </p>
-        ) : null}
-      </ProdSection>
 
-      <ProdSection title="주변 추천">
+        <h3 className="home-section__title">주변 추천</h3>
         {placesErr ? <PageStatus variant="error" /> : null}
-        {placesLoading ? <PageStatus variant="loading" /> : null}
         {!placesLoading && !placesErr && places.length === 0 ? (
           <PageStatus
             variant="empty"
-            message="이 도시에 대한 nearby_places 행이 없거나, 넣으신 city_id가 cities.id와 다를 수 있어요. 테이블에서 city_id를 선택 중인 도시와 동일하게 맞춰 주세요."
+            message="주변 추천 데이터가 아직 없어요. 잠시 후 다시 시도해 주세요."
           />
         ) : null}
+
         {!placesLoading && !placesErr && places.length ? (
-          <ul className="page-list">
-            {places.map((p, i) => (
-              <li key={`${p.title}-${i}`}>
-                <strong>{p.title}</strong>
-                <span className="page-muted">{p.addr ?? "주소 정보 없음"}</span>
-              </li>
-            ))}
-          </ul>
+          <>
+            <div className="nearby-activity-tabs" role="tablist" aria-label="추천 활동 탭">
+              {placeTabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedTab === tab.key}
+                  className={selectedTab === tab.key ? "is-active" : ""}
+                  onClick={() => setSelectedTab(tab.key)}
+                >
+                  <span aria-hidden="true">{nearbyTabEmoji(tab.label)}</span>{" "}
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="home-place-list nearby-place-list">
+              {visiblePlaces.slice(0, 3).map((place, idx) => {
+                const km =
+                  mapCenter &&
+                  place.lat != null &&
+                  place.lon != null &&
+                  Number.isFinite(place.lat) &&
+                  Number.isFinite(place.lon)
+                    ? distanceKm(mapCenter.lat, mapCenter.lon, place.lat, place.lon)
+                    : null;
+                const active = selectedPlaceTitle === place.title;
+                return (
+                  <button
+                    key={`${place.title}-${idx}`}
+                    type="button"
+                    className={`home-place-card nearby-place-card ${active ? "is-active" : ""}`}
+                    onClick={() => setSelectedPlaceTitle(place.title)}
+                  >
+                    <div className="home-place-card__body">
+                      <div className="home-place-card__head">
+                        <h3 className="home-place-card__name">{place.title}</h3>
+                        <p className="home-place-card__desc">
+                          {place.summary?.trim() || "장소에 대한 1줄 설명"}
+                        </p>
+                      </div>
+                      <div className="home-place-card__map-row">
+                        <span className="nearby-place-card__category">
+                          {normalizeNearbyCategory(place.category)}
+                        </span>
+                        <span className="home-place-card__dist">
+                          {formatNearbyDistance(km)}
+                        </span>
+                      </div>
+                    </div>
+                    <NearbyGsScore rank={idx + 1} />
+                  </button>
+                );
+              })}
+            </div>
+          </>
         ) : null}
-      </ProdSection>
-    </ProdPageChrome>
+      </section>
+
+      <section className="home-section nearby-section">
+        <h3 className="home-section__title">지도</h3>
+        {mapCenter ? (
+          naverMapClientId ? (
+            <NaverNearbyMap
+              clientId={naverMapClientId}
+              center={mapCenter}
+              markers={mapMarkers}
+              selectedMarkerTitle={selectedPlaceTitle}
+            />
+          ) : (
+            <PageStatus
+              variant="empty"
+              message="네이버 지도를 보려면 VITE_NAVER_MAP_CLIENT_ID 설정 후 서버를 재시작해 주세요."
+            />
+          )
+        ) : (
+          <PageStatus variant="loading" message="지도 좌표를 준비 중이에요." />
+        )}
+      </section>
+    </article>
   );
 }
 
