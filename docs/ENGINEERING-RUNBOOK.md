@@ -77,3 +77,28 @@
 - `NAVIGATION-FLOW.md`
 - `PLATFORM-OPS.md`
 
+---
+
+## 7. Nearby 네이버 지도 인증 Runbook
+
+### 증상
+- `/nearby`에서 지도가 비어 보임
+- 브라우저 콘솔: `Error Code 200 / Authentication Failed`
+
+### 1차 점검
+1. `web/.env.local`의 `VITE_NAVER_MAP_CLIENT_ID`가 Maps JavaScript용 Client ID인지 확인
+2. 네이버 콘솔 동일 앱의 Web 서비스 URL에 아래 origin 등록 여부 확인
+   - `http://localhost:5174`
+   - `http://127.0.0.1:5174`
+   - 배포 도메인(ex: `https://ggg-sand-five.vercel.app`)
+3. 앱 설정 저장 후 1~3분 대기
+4. 개발 서버 재시작(`npm run dev`) + 브라우저 강력 새로고침
+
+### 2차 점검
+- 콘솔에서 수정한 앱의 Client ID와 실제 `.env.local` 값이 같은지 재검증
+- `localhost`와 `127.0.0.1` 중 실제 접속 origin이 무엇인지 주소창 기준으로 확인
+
+### 운영 원칙
+- 키 변경 시 기존 SDK 스크립트 캐시를 제거하고 재로딩(코드 반영됨)
+- 인증 실패 메시지는 사용자 화면에 노출해 즉시 점검 가능하도록 유지
+

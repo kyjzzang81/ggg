@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
-export type CityRow = { id: string; name_ko: string; lat: number | null; lon: number | null }
+export type CityRow = {
+  id: string
+  name_ko: string
+  name_en: string | null
+  lat: number | null
+  lon: number | null
+  country: string | null
+}
 
 function readPersistedCityId(persistKey?: string) {
   if (!persistKey || typeof window === 'undefined') return ''
@@ -35,7 +42,7 @@ export function useCities(limit = 300, persistKey?: string) {
       try {
         const { data, error: qErr } = await supabase
           .from('cities')
-          .select('id, name_ko, lat, lon')
+          .select('id, name_ko, name_en, lat, lon, country')
           .order('is_popular', { ascending: false })
           .order('name_ko')
           .limit(limit)

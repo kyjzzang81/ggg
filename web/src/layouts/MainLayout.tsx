@@ -1,16 +1,29 @@
 import { useMemo, useState } from "react";
+import {
+  BarChart3,
+  CalendarDays,
+  Compass,
+  Home,
+  Navigation,
+  type LucideIcon,
+} from "lucide-react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { SidebarProvider } from "./SidebarContext";
 import "./MainLayout.css";
 
-type TabItem = { to: string; label: string; end?: boolean };
+type TabItem = {
+  to: string;
+  label: string;
+  end?: boolean;
+  Icon: LucideIcon;
+};
 
 const tabs: TabItem[] = [
-  { to: "/", label: "홈", end: true },
-  { to: "/score", label: "ggg score" },
-  { to: "/place", label: "장소" },
-  { to: "/nearby", label: "주변" },
-  { to: "/dday", label: "D-day" },
+  { to: "/", label: "홈", end: true, Icon: Home },
+  { to: "/score", label: "ggg score", Icon: BarChart3 },
+  { to: "/place", label: "장소", Icon: Compass },
+  { to: "/nearby", label: "주변", Icon: Navigation },
+  { to: "/dday", label: "D-day", Icon: CalendarDays },
 ];
 
 const sideLinks = [
@@ -46,7 +59,7 @@ export function MainLayout() {
             <span className="shell__sidebar-badge">beta</span>
           </div>
           <nav className="shell__sidebar-nav" aria-label="주요 메뉴">
-            {tabs.map(({ to, label, end }) => (
+            {tabs.map(({ to, label, end, Icon }) => (
               <NavLink
                 key={`desktop-tab-${to}`}
                 to={to}
@@ -55,7 +68,8 @@ export function MainLayout() {
                   `shell__sidebar-link${isActive ? " shell__sidebar-link--active" : ""}`
                 }
               >
-                {label}
+                <Icon size={18} aria-hidden="true" />
+                <span>{label}</span>
               </NavLink>
             ))}
           </nav>
@@ -109,7 +123,7 @@ export function MainLayout() {
 
         {/* 하단 탭 */}
         <nav className="shell__bottom" aria-label="하단 탭">
-          {tabs.map(({ to, label, end }) => (
+          {tabs.map(({ to, label, end, Icon }) => (
             <NavLink
               key={to}
               to={to}
@@ -118,7 +132,10 @@ export function MainLayout() {
                 `shell__tab${isActive ? " shell__tab--active" : ""}`
               }
             >
-              {label}
+              <span className="shell__tab-icon" aria-hidden="true">
+                <Icon size={20} />
+              </span>
+              <span className="shell__tab-label">{label}</span>
             </NavLink>
           ))}
         </nav>

@@ -31,6 +31,88 @@
   --color-surface-soft: #ffffff;
   --color-surface-label: #f5f7fb;
 
+  /* Radius tokens */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-pill: 999px;
+
+  /* Overlay/surface tokens */
+  --overlay-scrim: color-mix(in srgb, var(--color-black) 40%, transparent);
+  --surface-frosted: color-mix(
+    in srgb,
+    var(--color-surface-base) 95%,
+    transparent
+  );
+
+  /* Shadow tokens */
+  --shadow-elev-sm: 0 1px 2px
+    color-mix(in srgb, var(--color-black) 12%, transparent);
+  --shadow-elev-md: 0 2px 10px
+    color-mix(in srgb, var(--color-black) 24%, transparent);
+  --shadow-elev-lg: 0 8px 16px
+    color-mix(in srgb, var(--color-black) 24%, transparent);
+  --shadow-elev-xl: 0 10px 24px
+    color-mix(in srgb, var(--color-black) 30%, transparent);
+
+  /* Alpha surface/ink helpers */
+  --ink-25: color-mix(in srgb, var(--color-black) 25%, transparent);
+  --ink-30: color-mix(in srgb, var(--color-black) 30%, transparent);
+  --ink-40: color-mix(in srgb, var(--color-black) 40%, transparent);
+  --white-18: color-mix(in srgb, var(--color-white) 18%, transparent);
+  --white-30: color-mix(in srgb, var(--color-white) 30%, transparent);
+  --white-55: color-mix(in srgb, var(--color-white) 55%, transparent);
+  --white-80: color-mix(in srgb, var(--color-white) 80%, transparent);
+  --white-95: color-mix(in srgb, var(--color-white) 95%, transparent);
+
+  /* Size tokens */
+  --size-2xs: 1rem; /* 16 */
+  --size-xs: 1.125rem; /* 18 */
+  --size-sm: 1.25rem; /* 20 */
+  --size-md: 1.5rem; /* 24 */
+  --size-lg: 1.75rem; /* 28 */
+  --size-xl: 2rem; /* 32 */
+  --size-2xl: 2.5rem; /* 40 */
+  --size-3xl: 2.75rem; /* 44 */
+  --size-4xl: 3rem; /* 48 */
+  --size-5xl: 3.5rem; /* 56 */
+  --size-6xl: 4rem; /* 64 */
+  --size-7xl: 5rem; /* 80 */
+  --size-8xl: 7rem; /* 112 */
+  --size-9xl: 7.5rem; /* 120 */
+  --size-10xl: 10rem; /* 160 */
+  --size-11xl: 20rem; /* 320 */
+  --size-12xl: 25rem; /* 400 */
+  --size-13xl: 32.5rem; /* 520 */
+
+  /* Layout tokens */
+  --layout-forecast-label-col: 4.875rem; /* 78 */
+  --layout-forecast-day-col: 3.625rem; /* 58 */
+  --layout-forecast-overlay-left: 4.9375rem; /* 79 */
+  --layout-forecast-min-width: 23rem; /* 368 */
+  --layout-forecast-row-h: 4.5rem; /* 72 */
+  --layout-forecast-head-h: 2.75rem; /* 44 */
+
+  /* Skeleton tokens */
+  --skeleton-map-h: 15rem; /* 240 */
+  --skeleton-forecast-h: 18.75rem; /* 300 */
+  --skeleton-title-w: 6.875rem; /* 110 */
+  --skeleton-chip-w: 4.5rem; /* 72 */
+  --skeleton-line-h-xs: 0.875rem; /* 14 */
+  --skeleton-line-h-sm: 1.125rem; /* 18 */
+  --skeleton-line-h-md: 1.375rem; /* 22 */
+  --skeleton-line-h-lg: 1.5rem; /* 24 */
+  --skeleton-line-h-xl: 2.25rem; /* 36 */
+  --skeleton-card-h-sm: 5.25rem; /* 84 */
+  --skeleton-card-h-md: 6.125rem; /* 98 */
+  --skeleton-card-h-lg: 6.75rem; /* 108 */
+  --skeleton-card-h-xl: 7rem; /* 112 */
+
+  --layout-fab-offset-left: 1rem; /* 16 */
+  --layout-fab-size: 2.5rem; /* 40 */
+
   /* Text style tokens (Figma) */
   --text-card-title-active: 28px;
   --text-card-title-unactive: 16px;
@@ -68,7 +150,11 @@
   z-index: 1200;
   display: grid;
   place-items: center;
-  background: rgba(245, 247, 251, 0.56);
+  background: color-mix(
+    in srgb,
+    var(--color-lightgrey) 56%,
+    transparent
+  );
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
 }
@@ -91,8 +177,8 @@
 }
 
 .preloader-anim-wrap {
-  width: 82px;
-  height: 82px;
+  width: var(--size-7xl);
+  height: var(--size-7xl);
   display: grid;
   place-items: center;
 }
@@ -103,10 +189,10 @@
 }
 
 .preloader-fallback {
-  width: 28px;
-  height: 28px;
+  width: var(--size-lg);
+  height: var(--size-lg);
   border-radius: 50%;
-  border: 3px solid color-mix(in srgb, var(--color-primary) 24%, #fff);
+  border: 3px solid color-mix(in srgb, var(--color-primary) 24%, var(--color-white));
   border-top-color: var(--color-primary);
   animation: preloaderSpin 0.8s linear infinite;
 }
