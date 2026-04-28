@@ -10,7 +10,7 @@ export function ProdPageChrome({
   children: ReactNode
 }) {
   return (
-    <article className="prod-page">
+    <article className="home-page prod-page">
       <header className="prod-page__head">
         <h1 className="prod-page__title">{title}</h1>
         {lead ? <p className="prod-page__lead">{lead}</p> : null}

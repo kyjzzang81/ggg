@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
+import { Pencil, X } from "lucide-react";
 import { PageStatus } from "../components/PageStatus";
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../hooks/useAuth";
@@ -239,25 +240,29 @@ export function DdayPage() {
 
   if (!user) {
     return (
-      <article className="home-page prod-page prod-page--auth">
-        <h1 className="prod-hero__title prod-hero__title--dday">
-          <span>D</span> Day
-        </h1>
-        <p className="prod-hero__desc prod-hero__desc--dday">
-          로그인하면 D-day를 저장하고 알림을 받을 수 있어요.
-        </p>
-        <PageStatus variant="empty" message="로그인하면 일정을 저장할 수 있어요." />
-        {err ? <PageStatus variant="error" /> : null}
-        <button type="button" className="page-btn page-btn--primary" onClick={signInGoogle}>
-          Google로 로그인
-        </button>
+      <article className="home-page prod-page dday-page prod-page--auth">
+        <section className="home-hero prod-hero dday-hero">
+          <h1 className="prod-hero__title prod-hero__title--dday">
+            <span>D</span> Day
+          </h1>
+          <p className="prod-hero__desc prod-hero__desc--dday">
+            로그인하면 여행일정을 저장하고 예보 알림을 받을 수 있어요.
+          </p>
+        </section>
+        <section className="home-section dday-auth">
+          <PageStatus variant="empty" message="로그인하면 일정을 저장할 수 있어요." />
+          {err ? <PageStatus variant="error" /> : null}
+          <button type="button" className="page-btn page-btn--primary" onClick={signInGoogle}>
+            Google로 로그인
+          </button>
+        </section>
       </article>
     );
   }
 
   return (
-    <article className="home-page prod-page">
-      <section className="home-section prod-hero">
+    <article className="home-page prod-page dday-page">
+      <section className="home-hero prod-hero dday-hero">
         <h1 className="prod-hero__title prod-hero__title--dday">
           <span>D</span> Day
         </h1>
@@ -266,7 +271,7 @@ export function DdayPage() {
         </p>
       </section>
 
-      <section className="home-section dday-page__filters">
+      <section className="home-section dday-page__filters" aria-label="D-day 빠른 필터">
         <div className="dday-filter-tabs">
           {topFilters.map((label, idx) => (
             <button key={`${label}-${idx}`} type="button" className={idx === 0 ? "is-active" : ""}>
@@ -289,7 +294,7 @@ export function DdayPage() {
             <PageStatus variant="empty" message="아직 저장된 D-day 일정이 없어요." />
           ) : null}
 
-          <section className="home-section dday-list">
+          <section className="home-section dday-list" aria-label="저장된 D-day 일정">
             {rows.map((r) => {
               const cityName = r.city_id
                 ? (cityNameById.get(r.city_id) ?? r.city_id)
@@ -303,8 +308,8 @@ export function DdayPage() {
                           {r.event_name}
                         </h3>
                         <p className="home-place-card__desc">
-                          {cityName}{" "}
-                          <span>{r.note?.trim() || "여행기간"}</span>
+                          <span className="dday-card__city">{cityName}</span>
+                          <span className="dday-card__period">{r.note?.trim() || "여행기간"}</span>
                         </p>
                       </div>
                       <div className="dday-card__actions">
@@ -313,14 +318,14 @@ export function DdayPage() {
                           onClick={() => startEdit(r)}
                           aria-label="수정"
                         >
-                          ✎
+                          <Pencil aria-hidden="true" />
                         </button>
                         <button
                           type="button"
                           onClick={() => remove(r.id)}
                           aria-label="삭제"
                         >
-                          ✕
+                          <X aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -478,7 +483,7 @@ function DdayPageSkeleton() {
   return (
     <>
       <section
-        className="home-section prod-hero dday-skeleton__hero"
+        className="home-hero prod-hero dday-skeleton__hero"
         aria-hidden="true"
       >
         <div className="dday-skeleton__hero-title" />

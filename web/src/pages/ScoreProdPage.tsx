@@ -492,7 +492,7 @@ export function ScoreProdPage() {
 
   if (!supabase) {
     return (
-      <article className="prod-page">
+      <article className="home-page prod-page">
         <PageStatus
           variant="error"
           message={PAGE_STATUS_COPY.supabaseMissing}
@@ -502,7 +502,7 @@ export function ScoreProdPage() {
   }
 
   return (
-    <article className="prod-page">
+    <article className="home-page prod-page">
       {citiesError ? <PageStatus variant="error" /> : null}
 
       {err ? <PageStatus variant="error" /> : null}

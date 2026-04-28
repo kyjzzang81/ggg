@@ -196,7 +196,7 @@ export function PlaceProdPage() {
 
   if (!supabase) {
     return (
-      <article className="prod-page">
+      <article className="home-page prod-page">
         <section className="home-hero prod-hero">
           <h1 className="prod-hero__title prod-hero__title--place">
             <span>장소</span> 추천
@@ -221,7 +221,7 @@ export function PlaceProdPage() {
     !showLoading && !err && !citiesError && rankedCities.length === 0;
 
   return (
-    <article className="prod-page">
+    <article className="home-page prod-page">
       {/* Hero */}
       <section className="home-hero prod-hero">
         <h1 className="prod-hero__title prod-hero__title--place">
