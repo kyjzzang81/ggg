@@ -54,7 +54,7 @@ export function MainLayout() {
         <aside className="shell__sidebar-desktop" aria-label="사이드 메뉴">
           <div className="shell__sidebar-head">
             <a href="/" className="shell__sidebar-brand logo-symbol">
-              <img src="/public/logo-symbol.png" alt="ggg" />
+              <img src="/logo-symbol.png" alt="ggg" />
             </a>
             <span className="shell__sidebar-badge">beta</span>
           </div>
